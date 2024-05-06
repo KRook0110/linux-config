@@ -1,0 +1,6 @@
+nvim/undo
+nvim/.undo
+nvim/lazy-lock.json
+nvim/.repro
+nvim/nvim.appimage
+

@@ -1,0 +1,11 @@
+{
+    "Begin End": {
+        "prefix": "begin",
+        "body":[
+            "\\begin{${1}}",
+            "   ${0}",
+            "\\end{${1}}"
+        ],
+        "description": "Auto closing begin environments"
+    }
+}

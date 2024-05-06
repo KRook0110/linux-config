@@ -1,0 +1,21 @@
+{
+    "Start Template": {
+        "prefix": "rafc",
+        "body" :[
+            "import React, { useState } from \"react\"",
+            "",
+            "",
+            "function ${1:${TM_FILENAME_BASE}}() {",
+            "   return (",
+            "       <div>",
+            "           ${1}${0}",
+            "       </div>",
+            "   )",
+            "}",
+            "",
+            "export default ${1}"
+        ],
+        "description": "Starting template for react typescript"
+    }
+
+}
