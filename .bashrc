@@ -13,14 +13,15 @@ export PATH="~/Documents/randomprograms/Python/Python-3.12.2/:$PATH"
 export PATH="/usr/local/go/bin/:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
 
+# -- bindings
 
 # -- Commands --
 CONFIG_PATH="~/.config/"
 # file fzf
 alias sd="cd ~ && cd \"\$(find * -type d | fzf)\""
-alias scd="cd \$(find * -type d | fzf)"
-alias scp="echo \$(find ~/* | fzf) | xclip -sel clip"
-alias snv="nv \$(find * | fzf)"
+alias scd="cd \"\$(find * -type d | fzf)\""
+alias scp="echo \"\$(find ~/* | fzf) | xclip -sel clip\""
+alias snv="nv \"\$(find * | fzf)\""
 
 
 # short nvim

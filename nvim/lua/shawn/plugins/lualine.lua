@@ -51,6 +51,7 @@ return {
                 lualine_z = {}
             },
             tabline = {
+
             },
             winbar = {},
             inactive_winbar = {},

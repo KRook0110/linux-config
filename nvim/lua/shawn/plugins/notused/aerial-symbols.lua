@@ -201,8 +201,8 @@ return {
 
             -- Call this function when aerial attaches to a buffer.
             on_attach = function(bufnr)
-                vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-                vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+                vim.keymap.set("n", "}", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+                vim.keymap.set("n", "{", "<cmd>AerialNext<CR>", { buffer = bufnr })
             end,
 
             -- Call this function when aerial first sets symbols on a buffer.

@@ -47,8 +47,8 @@ return {
                 -- `Enter` key to confirm completion
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
-                -- -- Ctrl+Space to trigger completion menu | Broken cuz i use tmux
-                -- ['<C-Space>'] = cmp.mapping.complete(),
+                -- -- Ctrl+x to trigger completion menu | Ctrl + space Broken cuz i use tmux
+                ['<C-x>'] = cmp.mapping.complete(),
 
                 -- Navigate between snippet placeholder
                 ['<Tab>'] = cmp.mapping(function(fallback)
@@ -73,7 +73,7 @@ return {
                 -- Scroll up and down in the completion documentation
                 ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                ['<C-Enter>'] = cmp.mapping.complete()
+                -- ['<C-CR>'] = cmp.mapping.complete()
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },                       -- LSP

@@ -53,7 +53,7 @@ return {
             keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
             opts.desc = "Show LSP implementations"
-            keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp definitions
+            keymap.set("n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp definitions
 
 			opts.desc = "Show code actions"
 			keymap.set("n", "ga", function () vim.lsp.buf.code_action() end, opts) -- show code actions

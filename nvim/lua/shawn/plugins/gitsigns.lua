@@ -54,22 +54,30 @@ return {
                     vim.keymap.set(mode, l, r, opts)
                 end
 
-                -- Navigation
-                map('n', ']c', function()
-                    if vim.wo.diff then
-                        vim.cmd.normal({']c', bang = true})
-                    else
-                        gitsigns.nav_hunk('next')
-                    end
-                end)
 
-                map('n', '[c', function()
+                local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
+                local gs = require("gitsigns")
+
+                local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+
+                -- Navigation
+                map('n', ']H', function()
                     if vim.wo.diff then
-                        vim.cmd.normal({'[c', bang = true})
+                        vim.cmd.normal({']H', bang = true})
                     else
-                        gitsigns.nav_hunk('prev')
+                        -- gitsigns.nav_hunk('next')
+                        next_hunk_repeat()
                     end
-                end)
+                end, {desc = "next git hunk"})
+
+                map('n', '[H', function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({'[H', bang = true})
+                    else
+                        -- gitsigns.nav_hunk('prev')
+                        prev_hunk_repeat()
+                    end
+                end, { desc = "prev git hunk"})
 
                 -- Actions
                 map('n', '<leader>gs', gitsigns.stage_hunk)
@@ -85,6 +93,7 @@ return {
                 map('n', '<leader>gd', gitsigns.diffthis)
                 map('n', '<leader>gD', function() gitsigns.diffthis('~') end)
                 map('n', '<leader>gtd', gitsigns.toggle_deleted)
+
 
                 -- Text object
                 map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

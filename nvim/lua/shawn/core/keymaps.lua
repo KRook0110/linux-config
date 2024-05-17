@@ -24,10 +24,9 @@ local map = vim.keymap.set
 map("n", "J", "mzJ'z", opts)
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
-map("n", "<C-d>", "<C-d>zz", opts)
-map("n", "<C-u>", "<C-u>zz", opts)
+map("n", "<C-d>", "M<C-d>zzM", opts)
+map("n", "<C-u>", "M<C-u>zzM", opts)
 map("n", "<leader>n", ":noh<CR>", opts)
-
 
 -- for wraps
 map("n", "j", "gj", opts)
@@ -38,18 +37,15 @@ map("n", "<A-k>", ":m-2<CR>V=", opts)
 map("n", "<A-j>", ":m+1<CR>V=", opts)
 map("n", "<A-l>", ">>", opts)
 map("n", "<A-h>", "<<", opts)
-map("n", "X", ":keeppatterns substitute/\\s*\\%#\\s*/\\r/e <bar> normal! ==^<cr>", opts) -- Adds new line
-map("n", "gC", [[ <CMD>s/\v<(.)(\w*)/\u\1\L\2/g<CR><CMD>noh<CR> ]], {desc="Capitalize Every Word", noremap=true, silent=true})
-
+map({"n", "v"}, "gC", [[ <CMD>s/\v(\w)(\w*)/\u\1\L\2/g<CR><CMD>noh<CR> ]], {desc="Capitalize Every Word", noremap=true, silent=true})
 map("v", "<A-l>", ">gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 map("v", "<A-h>", "<gv", opts)
 map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
-map("v", "gC", [[ <CMD>'<,'>s/\%V\v<(.)(\w*)([\_\-]?)/\u\1\L\2\3/g<CR><CMD>noh<CR> ]], {desc="Capitalize Every Word", noremap=true, silent=true})
 
--- paste Without Copying
+-- Paste Without Copying
 map("v", "p", "\"_dp")
 map("v", "P", "\"_dP")
 
@@ -58,9 +54,6 @@ map("n", "<C-j>", ":wincmd j<CR>", opts)
 map("n", "<C-k>", ":wincmd k<CR>", opts)
 map("n", "<C-l>", ":wincmd l<CR>", opts)
 map("n", "<C-h>", ":wincmd h<CR>", opts)
-map("n", "<leader>sv", ":vsplit<CR>:wincmd l<CR>", opts)
-map("n", "<leader>sh", ":split<CR>:wincmd j<CR>", opts)
-map("n", "<leader>so", ":only<CR>", opts)
 
 -- window resize
 map("n", "<Up>", ":res +1<CR>", opts)
@@ -69,9 +62,6 @@ map("n", "<Left>", ":vertical res +1<CR>", opts)
 map("n", "<Right>", ":vertical res -1<CR>", opts)
 
 -- terminal window manager
-map("n", "<leader>stt", ":terminal<CR>i", opts)
-map("n", "<leader>stv", ":vsplit<CR>:wincmd l<CR>:terminal<CR>i", opts)
-map("n", "<leader>sth", ":split<CR>:wincmd j<CR>:terminal<CR>i", opts)
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Normal Mode", silent = true })
 
 -- copy and paste
@@ -81,11 +71,8 @@ map("n", "<leader>P", "\"+p", { desc = "Paste to Clipboard" })
 map("v", "<leader>P", "\"_d\"+p", { desc = "Paste to Clipboard" })
 
 -- Insert shortcuts
-map("i", "jj", "<Esc>", opts)
-map("i", "<M-BS>", "<C-o>daw", opts)
-map("i", "<M-;>", "<C-o>$;", opts)
-map("i", "<M-j>", "<C-o>j<C-o>A", opts)
-map("i", "<M-k>", "<C-o>k<C-o>A", opts)
+map("i", "<C-CR>","<ESC>o")
+map("i", "jk", "<Esc>", opts)
 
 -- Change Modes
 map("n", "<leader>Mw", function()
