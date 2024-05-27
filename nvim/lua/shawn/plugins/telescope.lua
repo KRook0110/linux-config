@@ -6,66 +6,70 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-fzf-native.nvim",
-			"nvim-telescope/telescope-file-browser.nvim",
 
 			-- has no meaning
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 
-            -- "nvim-telescope/telescope-ui-select.nvim"
-        },
-        config = function()
-            local actions = require("telescope.actions")
-            require("telescope").setup({
-                defaults = {
-                    wrap_results = true,
-                    file_ignore_patterns = {
-                        "node_modules",
-                    },
-                    theme = "center",
-                    sorting_strategy = "ascending",
-                    layout_config = {
-                        horizontal = {
-                            prompt_position = "top",
-                            preview_width = 0.3,
-                        },
-                    },
-                    mappings = {
-                        i = {
-                            ["<CR>"] = require("telescope.actions").select_default
-                                + require("telescope.actions").center,
-                            ["<C-x>"] = require("telescope.actions").select_horizontal
-                                + require("telescope.actions").center,
-                            ["<C-v>"] = require("telescope.actions").select_vertical
-                                + require("telescope.actions").center,
-                            ["<C-t>"] = require("telescope.actions").select_tab + require("telescope.actions").center,
-                            ["<esc>"] = actions.close,
-                        },
-                        n = {
-                            ["l"] = require('telescope.actions').cycle_history_next,
-                            ["h"] = require('telescope.actions').cycle_history_prev,
+			-- "nvim-telescope/telescope-ui-select.nvim"
+		},
+		config = function()
+			local actions = require("telescope.actions")
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<CR>"] = function(bufnr)
+								actions.select_default(bufnr)
+								actions.center(bufnr)
+							end,
+							["<C-x>"] = actions.select_horizontal,
+							["<C-v>"] = actions.select_vertical,
+							["<C-t>"] = actions.select_tab,
+							["<esc>"] = actions.close,
+						},
+						n = {
+							["<CR>"] = function(bufnr)
+								actions.select_default(bufnr)
+								actions.center(bufnr)
+							end,
 
-                            ["<CR>"] = require("telescope.actions").select_default + require("telescope.actions").center,
-                            ["<C-x>"] = require("telescope.actions").select_horizontal
-                                + require("telescope.actions").center,
-                            ["<C-v>"] = require("telescope.actions").select_vertical
-                                + require("telescope.actions").center,
-                            ["<C-t>"] = require("telescope.actions").select_tab + require("telescope.actions").center,
-                            ["q"] = actions.close,
-                        },
-                    },
-                },
-            })
+							["l"] = actions.cycle_history_next,
+							["h"] = actions.cycle_history_prev,
+							["q"] = actions.close,
+
+							["<C-x>"] = actions.select_horizontal,
+							["<C-v>"] = actions.select_vertical,
+							["<C-t>"] = actions.select_tab,
+							["<esc>"] = actions.close,
+						},
+					},
+					wrap_results = true,
+					file_ignore_patterns = {
+						"node_modules",
+					},
+					theme = "center",
+					sorting_strategy = "ascending",
+					layout_config = {
+						horizontal = {
+							prompt_position = "top",
+							preview_width = 0.3,
+						},
+					},
+				},
+			})
 
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>f", function()
 				builtin.find_files({ previewer = false })
 			end, { desc = "files" })
-			vim.keymap.set("n", "<leader>s", builtin.current_buffer_fuzzy_find, { desc = "current buffer" })
-			vim.keymap.set("n", "<leader>a", builtin.live_grep, { desc = "All" })
+			vim.keymap.set("n", "<leader>a", builtin.current_buffer_fuzzy_find, { desc = "current buffer" })
+			vim.keymap.set("n", "<leader>A", builtin.live_grep, { desc = "All" })
 			vim.keymap.set("n", "<leader>FC", builtin.colorscheme, { desc = "Colorscheme" })
 			vim.keymap.set("n", "<leader>Fc", builtin.registers, { desc = "Clipboard" })
+			vim.keymap.set("n", "<leader>Fh", builtin.help_tags, { desc = "Help Tags" })
+			vim.keymap.set("n", "<leader>Fo", builtin.oldfiles, { desc = "old files" })
 			vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Buffers" })
 			vim.keymap.set("n", "<leader>o", builtin.treesitter, { desc = "Treesitter", silent = true, noremap = true })
 			vim.keymap.set(
@@ -74,17 +78,15 @@ return {
 				builtin.lsp_dynamic_workspace_symbols,
 				{ desc = "Lsp Workspace Symbols", silent = true, noremap = true }
 			)
-            local ts_repeat_move = require "nvim-treesitter.textobjects.repeatable_move"
-            local next_quickfix, prev_quickfix = ts_repeat_move.make_repeatable_move_pair(function () vim.cmd([[cn]]) end, function () vim.cmd([[cp]]) end)
-
-            vim.keymap.set("n","]t",next_quickfix, {desc = "next quickfix list" })
-            vim.keymap.set("n","[t",prev_quickfix, {desc = "prev quickfix list" })
+			vim.keymap.set("n", "]q", "<CMD>cn<CR>", { desc = "next quickfix list" })
+			vim.keymap.set("n", "[q", "<CMD>cp<CR>", { desc = "prev quickfix list" })
 			-- vim.keymap.set('n', '<leader>O', function () builtin.lsp_workspace_symbols({query = "var"}) end, {desc = "Lsp Workspace Symbols", silent=true, noremap = true})
-			vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "Marks", silent = true, noremap = true })
+			-- vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "Marks", silent = true, noremap = true })
 		end,
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
+		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 		build = "make",
 		config = function()
 			-- You dont need to set any of these options. These are the default ones. Only
@@ -107,27 +109,23 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-		-- event = "VeryLazy",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+		},
+		event = "VeryLazy",
 		config = function()
 			-- You don't need to set any of these options.
 			-- IMPORTANT!: this is only a showcase of how you can set default options!
+			local actions = require("telescope.actions")
 			require("telescope").setup({
 				extensions = {
 					file_browser = {
 						-- theme = "ivy",
 						-- disables netrw and use telescope-file-browser in its place
 						hijack_netrw = true,
-                        grouped = true,
-                        -- initial_mode = "normal",
-						mappings = {
-							["i"] = {
-								-- your custom insert mode mappings
-							},
-							["n"] = {
-								-- your custom normal mode mappings
-							},
-						},
+						grouped = true,
+						-- initial_mode = "normal",
 					},
 				},
 			})
@@ -149,13 +147,17 @@ return {
 					git_status = false,
 					path = "%:p:h",
 					select_buffer = true,
-                    -- initial_mode = "insert"
+					-- initial_mode = "insert"
 				})
 			end, { desc = "Workspace File Browser" })
 		end,
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+		},
 		config = function()
 			-- This is your opts table
 			require("telescope").setup({

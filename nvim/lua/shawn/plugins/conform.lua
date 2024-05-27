@@ -20,7 +20,6 @@ return {
 
 				go = { "gofmt" },
 
-                ["*"] = { "codespell" },
 			},
 			-- format_on_save = {
 			-- 	timeout = 500,
@@ -28,8 +27,17 @@ return {
 			-- },
 		})
 
+
 		-- Configs
 		local cf = require("conform").formatters
+
+        cf["clang-format"] = {
+            -- inherit=false,
+            -- command="clang-format",
+            args = {"--style={BasedOnStyle: LLVM,IndentWidth: 4}"}
+        }
+
+
 
 		vim.keymap.set("n", "<leader>pf", function()
 			require("conform").format({

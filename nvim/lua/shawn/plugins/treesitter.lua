@@ -24,7 +24,7 @@ return {
 				highlight = {
 					enable = true,
 					-- disable = { "latex" },
-					-- additional_vim_regex_highlighting = { "latex", "markdown" }
+					additional_vim_regex_highlighting = { "latex", "markdown" }
 
 					-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
 					-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
@@ -67,6 +67,27 @@ return {
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				textobjects = {
+					swap = {
+						enable = true,
+						-- swap_next = {
+						-- 	["<leader>m"] = "@parameter.inner",
+						-- },
+						-- swap_previous = {
+						-- 	["<leader>M"] = "@parameter.inner",
+						-- },
+						swap_next = {
+							["<leader>m"] = {
+								query = { "@parameter.inner", "@function.outer", "@class.outer" },
+								desc = "Move Next",
+							},
+						},
+						swap_previous = {
+							["<leader>M"] = {
+								query = { "@parameter.inner", "@function.outer", "@class.outer" },
+								desc = "Move Next",
+							},
+						},
+					},
 					select = {
 						enable = true,
 
@@ -77,14 +98,10 @@ return {
 							-- You can use the capture groups defined in textobjects.scm
 							["aa"] = "@parameter.outer",
 							["ia"] = "@parameter.inner",
-							["am"] = "@function.outer",
-							["im"] = "@function.inner",
-							["ac"] = "@class.outer",
-							["ic"] = "@class.inner",
-							["ad"] = "@conditional.outer",
-							["id"] = "@conditional.inner",
-							["ao"] = "@loop.outer",
-							["io"] = "@loop.inner",
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ao"] = "@class.outer",
+							["io"] = "@class.inner",
 						},
 						-- You can choose the select mode (default is charwise 'v')
 						--
@@ -113,12 +130,10 @@ return {
 						enable = true,
 						set_jumps = true, -- whether to set jumps in the jumplist
 						goto_next_start = {
-							["]m"] = "@function.outer",
-                            ["]a"] = { query =  "@parameter.outer" , desc = "Next Argument Start" },
-							["]]"] = { query = { "@class.outer", "@function.outer"}, desc = "Next Block Start"},
-                            ["]c"]  = { query = "@class.outer", desc = "Next Class Start"},
-							["]d"] = "@conditional.outer",
-							["]o"] = "@loop.outer",
+							["]f"] = "@function.outer",
+							["]a"] = { query = "@parameter.inner", desc = "Next Argument Start" },
+							["]]"] = { query = { "@class.outer", "@function.outer" }, desc = "Next Block Start" },
+							["]o"] = { query = "@class.outer", desc = "Next Class Start" },
 
 							-- -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queries.
 							--  ["]o"] = "@loop.*",
@@ -133,28 +148,22 @@ return {
 							-- ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
 						},
 						goto_next_end = {
-							["]M"] = "@function.outer",
-                            ["]A"] = { query =  "@parameter.outer" , desc = "Next Argument End" },
-							["]["] = { query = { "@class.outer", "@function.outer"}, desc = "Next Block End"},
-                            ["]C"]  = { query = "@class.outer", desc = "Next Class End"},
-							["]D"] = "@conditional.outer",
-							["]O"] = "@loop.outer",
+							["]F"] = "@function.outer",
+							["]A"] = { query = "@parameter.inner", desc = "Next Argument End" },
+							["]["] = { query = { "@class.outer", "@function.outer" }, desc = "Next Block End" },
+							["]O"] = { query = "@class.outer", desc = "Next Class End" },
 						},
 						goto_previous_start = {
-							["[m"] = "@function.outer",
-                            ["[a"] = { query =  "@parameter.outer" , desc = "Prev Argument Start" },
-                            ["[["]  = { query = { "@class.outer", "@function.outer"}, desc = "Prev Block Start"},
-                            ["[c"] = { query = "@class.outer", desc = "Prev Class Start"  },
-							["[d"] = "@conditional.outer",
-							["[o"] = "@loop.outer",
+							["[f"] = "@function.outer",
+							["[a"] = { query = "@parameter.inner", desc = "Prev Argument Start" },
+							["[["] = { query = { "@class.outer", "@function.outer" }, desc = "Prev Block Start" },
+							["[o"] = { query = "@class.outer", desc = "Prev Class Start" },
 						},
 						goto_previous_end = {
-							["[M"] = "@function.outer",
-                            ["[A"] = { query = "@parameter.outer", desc = "Prev Argument End" },
-                            ["[C"]  = { query = "@class.outer", desc = "Prev Class End"},
-                            ["[]"]  = { query = { "@class.outer", "@function.outer"}, desc = "Prev Block End"},
-							["[D"] = "@conditional.outer",
-							["[O"] = "@loop.outer",
+							["[F"] = "@function.outer",
+							["[A"] = { query = "@parameter.inner", desc = "Prev Argument End" },
+							["[O"] = { query = "@class.outer", desc = "Prev Class End" },
+							["[]"] = { query = { "@class.outer", "@function.outer" }, desc = "Prev Block End" },
 						},
 						-- Below will go to either the start or the end, whichever is closer.
 						-- Use if you want more granular movements
@@ -168,18 +177,18 @@ return {
 			local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 			-- Repeat movement with ; and ,
 			-- ensure ; goes forward and , goes backward regardless of the last direction
-			vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
-			vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
-
-			-- vim way: ; goes to the direction you were moving.
-			-- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-			-- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
-			-- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-			vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-			vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-			vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-			vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+			-- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
+			-- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
+			--
+			-- -- vim way: ; goes to the direction you were moving.
+			-- -- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+			-- -- vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+			--
+			-- -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+			-- vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
+			-- vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
+			-- vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
+			-- vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 		end,
 	},
 	{
@@ -202,7 +211,6 @@ return {
 				zindex = 20, -- The Z-index of the context window
 				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 			})
-
 		end,
 	},
 }

@@ -24,8 +24,8 @@ local map = vim.keymap.set
 map("n", "J", "mzJ'z", opts)
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
-map("n", "<C-d>", "M<C-d>zzM", opts)
-map("n", "<C-u>", "M<C-u>zzM", opts)
+map("n", "<C-d>", "M<C-d>zz", opts)
+map("n", "<C-u>", "M<C-u>zz", opts)
 map("n", "<leader>n", ":noh<CR>", opts)
 
 -- for wraps
@@ -37,7 +37,12 @@ map("n", "<A-k>", ":m-2<CR>V=", opts)
 map("n", "<A-j>", ":m+1<CR>V=", opts)
 map("n", "<A-l>", ">>", opts)
 map("n", "<A-h>", "<<", opts)
-map({"n", "v"}, "gC", [[ <CMD>s/\v(\w)(\w*)/\u\1\L\2/g<CR><CMD>noh<CR> ]], {desc="Capitalize Every Word", noremap=true, silent=true})
+map(
+	{ "n", "v" },
+	"gC",
+	[[ <CMD>s/\v(\w)(\w*)/\u\1\L\2/g<CR><CMD>noh<CR> ]],
+	{ desc = "Capitalize Every Word", noremap = true, silent = true }
+)
 map("v", "<A-l>", ">gv", opts)
 map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
@@ -46,8 +51,8 @@ map("v", ">", ">gv", opts)
 map("v", "<", "<gv", opts)
 
 -- Paste Without Copying
-map("v", "p", "\"_dp")
-map("v", "P", "\"_dP")
+map("v", "p", '"_dp')
+map("v", "P", '"_dP')
 
 -- window
 map("n", "<C-j>", ":wincmd j<CR>", opts)
@@ -65,31 +70,35 @@ map("n", "<Right>", ":vertical res -1<CR>", opts)
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Normal Mode", silent = true })
 
 -- copy and paste
-map("n", "<leader>Y", "\"+Y", { desc = "Copy to Clipboard" })
-map("v", "<leader>Y", "\"+ygv", { desc = "Copy to Clipboard" })
-map("n", "<leader>P", "\"+p", { desc = "Paste to Clipboard" })
-map("v", "<leader>P", "\"_d\"+p", { desc = "Paste to Clipboard" })
+map("n", "<leader>Y", '"+Y', { desc = "Copy to Clipboard" })
+map("v", "<leader>Y", '"+ygv', { desc = "Copy to Clipboard" })
+map("n", "<leader>P", '"+p', { desc = "Paste to Clipboard" })
+map("v", "<leader>P", '"_d"+p', { desc = "Paste to Clipboard" })
 
 -- Insert shortcuts
-map("i", "<C-CR>","<ESC>o")
+map("i", "<C-CR>", "<ESC>o")
 map("i", "jk", "<Esc>", opts)
 
 -- Change Modes
+
+local wrap_setting_state = false
 map("n", "<leader>Mw", function()
-    vim.opt.wrap = true
-    vim.opt.linebreak = true
-    vim.opt.spell = true
-end, { desc = "Writing" })
+	vim.opt.wrap = wrap_setting_state
+	vim.opt.linebreak = wrap_setting_state
+	print("Wrap is now ", wrap_setting_state)
+	wrap_setting_state = not wrap_setting_state
+end, { desc = "Toggle Wrap" })
 
-map("n", "<leader>Mc", function()
-    vim.opt.spell = false
-    vim.opt.wrap = false
-    vim.opt.linebreak = false
-end, { desc = "Coding" })
+local check_spelling = false
+map("n", "<leader>Ms", function()
+	vim.opt.spell = check_spelling
+	print("Spell check is now ", check_spelling)
+	check_spelling = not check_spelling
+end, { desc = "Toggle Check Spell" })
 
-local conceal_level_holder = 0;
+local conceal_level_holder = 0
 map("n", "<leader>C", function()
-    vim.opt.conceallevel = conceal_level_holder
-    print("Conceal Level is now ", conceal_level_holder)
-    conceal_level_holder = (conceal_level_holder + 1) % 3
+	vim.opt.conceallevel = conceal_level_holder
+	print("Conceal Level is now ", conceal_level_holder)
+	conceal_level_holder = (conceal_level_holder + 1) % 3
 end, { desc = "Conceal Level" })

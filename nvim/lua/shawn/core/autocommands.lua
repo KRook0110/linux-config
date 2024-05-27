@@ -29,20 +29,20 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Cursorline highlighting control
 --  Only have it on in the active buffer
-vim.opt.cursorline = true -- Highlight the current line
-local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
-local set_cursorline = function(event, value, pattern)
-    vim.api.nvim_create_autocmd(event, {
-        group = group,
-        pattern = pattern,
-        callback = function()
-            vim.opt_local.cursorline = value
-        end,
-    })
-end
-set_cursorline("WinLeave", false)
-set_cursorline("WinEnter", true)
-set_cursorline("FileType", false, "TelescopePrompt")
+-- vim.opt.cursorline = true -- Highlight the current line
+-- local group = vim.api.nvim_create_augroup("CursorLineControl", { clear = true })
+-- local set_cursorline = function(event, value, pattern)
+--     vim.api.nvim_create_autocmd(event, {
+--         group = group,
+--         pattern = pattern,
+--         callback = function()
+--             vim.opt_local.cursorline = value
+--         end,
+--     })
+-- end
+-- set_cursorline("WinLeave", false)
+-- set_cursorline("WinEnter", true)
+-- set_cursorline("FileType", false, "TelescopePrompt")
 
 
 -- remove terminal line numbers
@@ -66,6 +66,7 @@ vim.api.nvim_create_autocmd("TextYankPost",
     }
 )
 
+
 -- When in json use spaces
 vim.api.nvim_create_autocmd(
 	{"BufRead", "BufNewFile"},
@@ -75,4 +76,20 @@ vim.api.nvim_create_autocmd(
 			vim.opt_local.expandtab = true
 		end
 	}
+)
+
+
+-- quickfix list
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern ={"qf"},
+        callback = function()
+
+            local buf = vim.api.nvim_get_current_buf()
+            local opt = {buffer = buf, noremap = true, silent = true}
+            vim.keymap.set("n", "j" ,"j<CR>zz<C-w>p", opt);
+            vim.keymap.set("n", "k" ,"k<CR>zz<C-w>p", opt);
+        end,
+    }
 )

@@ -8,6 +8,7 @@ opt.nu = true
 opt.relativenumber = true
 opt.signcolumn = "yes"
 opt.showtabline = 1 -- shows the tab lines -- the top part of the buffer
+opt.cursorline = true
 
 -- tabstop
 opt.tabstop = 4 -- insert 4 spaces for tab
@@ -18,9 +19,10 @@ opt.smartindent = true -- no idea
 opt.joinspaces = false
 
 -- code wrap
-opt.wrap = false
+opt.wrap = true
+opt.linebreak = true
 opt.foldmethod = "marker"
-opt.foldlevel = 0
+opt.foldlevel = 10
 opt.modelines = 1
 
 -- undo file backup
@@ -34,7 +36,7 @@ opt.hlsearch = true
 opt.incsearch = true
 
 -- window view options
-opt.scrolloff = 4
+opt.scrolloff = 0
 opt.isfname:append("@-@")
 opt.equalalways = true -- I don't like my windows changing all the time
 opt.splitright = true -- Prefer windows splitting to the right
@@ -56,6 +58,7 @@ opt.smartcase = true
 
 -- Spelling
 -- opt.spell = true
+opt.spellsuggest = "double"
 opt.spelllang = "en,id"
 
 -- line wrap breaks

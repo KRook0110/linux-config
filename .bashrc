@@ -2,8 +2,8 @@
 export EDITOR="nvim"
 export VISUAL="nvim"
 # -- Aliases --
-alias ls="ls -a1 --color=auto"
-alias ll="ls -Al --color=auto"
+alias ls="ls -a1 --color=auto --group-directories-first"
+alias ll="ls -Al --color=auto --group-directories-first"
 
 # -- Add to path --
 export PATH="/opt/cmake/bin/:$PATH"
@@ -12,6 +12,9 @@ export PATH="~/Documents/randomprograms/postman/Postman/:$PATH"
 export PATH="~/Documents/randomprograms/Python/Python-3.12.2/:$PATH"
 export PATH="/usr/local/go/bin/:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
+export PATH="/opt/nvim/:$PATH"
+export PATH="/sbin/:$PATH"
+export PATH="~/Documents/randomprograms/postman/Postman/app/:$PATH"
 
 # -- bindings
 
