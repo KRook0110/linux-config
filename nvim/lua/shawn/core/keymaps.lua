@@ -29,8 +29,10 @@ map("n", "<C-u>", "M<C-u>zz", opts)
 map("n", "<leader>n", ":noh<CR>", opts)
 
 -- for wraps
-map("n", "j", "gj", opts)
-map("n", "k", "gk", opts)
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- code manipulation
 map("n", "<A-k>", ":m-2<CR>V=", opts)
