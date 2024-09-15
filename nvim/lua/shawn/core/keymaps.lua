@@ -19,6 +19,7 @@ local map = vim.keymap.set
 -- map("n", "<leader>qq", ":q<CR>")
 -- map("n", "<leader>w", ":wa<CR>")
 -- map("n", "<Esc>", ":noh<CR>", opts)
+map("n", "\\", "<Esc>", opts)
 
 -- line navigation
 map("n", "J", "mzJ'z", opts)
@@ -84,7 +85,7 @@ map("i", "jk", "<Esc>", opts)
 -- Change Modes
 
 local wrap_setting_state = false
-map("n", "<leader>Mw", function()
+map("n", "<leader>Nw", function()
 	vim.opt.wrap = wrap_setting_state
 	vim.opt.linebreak = wrap_setting_state
 	print("Wrap is now ", wrap_setting_state)
@@ -92,7 +93,7 @@ map("n", "<leader>Mw", function()
 end, { desc = "Toggle Wrap" })
 
 local check_spelling = false
-map("n", "<leader>Ms", function()
+map("n", "<leader>Ns", function()
 	vim.opt.spell = check_spelling
 	print("Spell check is now ", check_spelling)
 	check_spelling = not check_spelling
@@ -104,3 +105,6 @@ map("n", "<leader>C", function()
 	print("Conceal Level is now ", conceal_level_holder)
 	conceal_level_holder = (conceal_level_holder + 1) % 3
 end, { desc = "Conceal Level" })
+
+
+

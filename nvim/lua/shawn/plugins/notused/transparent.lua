@@ -17,6 +17,6 @@ return {
 
         -- require('transparent').clear_prefix('NeoTree')
         -- require('transparent').clear_prefix('lualine')
-        vim.keymap.set("n","<leader>mt", "<CMD>TransparentToggle<CR>", {desc = "Transparent Background"})
+        -- vim.keymap.set("n","<leader>mt", "<CMD>TransparentToggle<CR>", {desc = "Transparent Background"})
     end,
 }

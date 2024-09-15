@@ -12,6 +12,7 @@ export PATH="~/Documents/randomprograms/postman/Postman/:$PATH"
 export PATH="~/Documents/randomprograms/Python/Python-3.12.2/:$PATH"
 export PATH="/usr/local/go/bin/:$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
+export PATH="/usr/bin/:$PATH"
 export PATH="/opt/nvim/:$PATH"
 export PATH="/sbin/:$PATH"
 export PATH="~/Documents/randomprograms/postman/Postman/app/:$PATH"
@@ -104,9 +105,5 @@ if [ -f '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-clo
 # Zoxide
 # eval "$(zoxide init bash)"
 
-# Tmux Sessions on Start
-tmux new -c ~/.config -s Config -d
-tmux new -c ~/Documents/programming -s Programming -d
-tmux new -c ~/Documents/obsidian-notes -s Notes -d
 
 clear

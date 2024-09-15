@@ -49,20 +49,20 @@ return {
 					file_ignore_patterns = {
 						"node_modules",
 					},
-					theme = "center",
-					sorting_strategy = "ascending",
-					layout_config = {
-						horizontal = {
-							prompt_position = "top",
-							preview_width = 0.3,
-						},
-					},
+					-- theme = "center",
+					-- sorting_strategy = "ascending",
+					-- layout_config = {
+					-- 	horizontal = {
+					-- 		prompt_position = "top",
+					-- 		preview_width = 0.3,
+					-- 	},
+					-- },
 				},
 			})
 
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>f", function()
-				builtin.find_files({ previewer = false })
+				builtin.find_files({ previewer = false , hidden = true})
 			end, { desc = "files" })
 			vim.keymap.set("n", "<leader>a", builtin.current_buffer_fuzzy_find, { desc = "current buffer" })
 			vim.keymap.set("n", "<leader>A", builtin.live_grep, { desc = "All" })
@@ -143,6 +143,7 @@ return {
 
 			vim.keymap.set("n", "<leader>e", function()
 				require("telescope").extensions.file_browser.file_browser({
+                    hidden=true,
 					grouped = true,
 					git_status = false,
 					path = "%:p:h",

@@ -126,13 +126,13 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:"
 set $ws2 "2:"
-set $ws3 "3"
-set $ws4 "4"
+set $ws3 "3:"
+set $ws4 "4:"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:"
-set $ws9 "9:"
+set $ws8 "8"
+set $ws9 "9"
 set $ws10 "10:"
 
 # switch to workspace
@@ -198,8 +198,22 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
         strip_workspace_numbers yes
-        position top
+        position bottom
+        mode hide
+        # mode invisible
+        colors {
+            background #272727
+            statusline #F9FAF9
+            separator  #454947
+
+            # focused_workspace  #F9FAF9 #F3C06A #292F34
+            # active_workspace   #595B5B #353836 #FDF6E3
+            # inactive_workspace #595B5B #304564 #EEE8D5
+            # binding_mode       #16a085 #2C2C2C #F9FAF9
+            # urgent_workspace   #16a085 #FDF6E3 #E5201D
+        }
 }
+bindsym $mod+b bar mode toggle
 
 
 # -----------------------ONSTARTUP-------------------------
@@ -215,14 +229,15 @@ bar {
 
 # --------------------------GAPS-------------------------
 # Adds gaps
-gaps inner 8
-gaps outer 3
-smart_gaps on
+gaps inner 10
+gaps outer 0
+# smart_gaps inverse_outer | yes | no
+smart_gaps yes
 # ------------------------END-GAPS-------------------------
 
 # --------------------------TitleBar------------------------
-default_border pixel 3
-default_floating_border pixel 3
+default_border pixel 2
+default_floating_border pixel 2
 # ------------------------END-TitleBar------------------------
 
 # -------------------------AUDIO-------------------------
@@ -248,12 +263,17 @@ bindsym XF86AudioPrev exec playerctl previous
 # -------------------------MISC----------------------------
 
 # Assign
-assign [class="obsidian"] $ws9
-assign [class="discord"] $ws8
+assign [class="obsidian"] $ws4
+assign [class="discord"] $ws3
 
 # Background
-exec_always feh --bg-scale /home/shawn-andrew/Pictures/Wallpaper/mountains1.jpg
-# exec open "obsidian://open"
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/Wallpaper/mountains2.jpg
+exec_always feh --bg-fill /home/shawn-andrew/Pictures/Wallpaper/SPTWP/2560x1440.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/Wallpaper/quote1.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/Wallpaper/bridge1.jpg
+
+# Emoji's
+bindsym $mod+period exec emote
 
 # For kitty transparency
 exec --no-startup-id picom -b
@@ -268,6 +288,7 @@ hide_edge_borders both
 # Dual Display
 # exec_always xrandr --output eDP --primary --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-A-0 --mode 1920x1080 --pos 1920x0 --rotate normal --output DisplayPort-0 --off
 
-
+# Bind Sleep
+# bindsym XF86PowerDown exec systemctl suspend
 
 # -----------------------END-MISC--------------------------

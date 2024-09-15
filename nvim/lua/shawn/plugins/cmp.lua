@@ -26,13 +26,14 @@ return {
         cmp.setup.cmdline(':', { -- CMP For Noice
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
-                { name = "path" },
                 {
                     name = 'cmdline',
+                    -- max_item_count = 8,
                     option = {
                         ignore_cmds = { 'Man', '!' },
                     }
-                }
+                },
+                { name = "path" }
             }
         })
 
@@ -63,7 +64,7 @@ return {
                 ['<S-Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
-                    elseif luasnip.locally_jumpable(-1) then
+                    elseif luasnip.jumpable(-1) then
                         luasnip.jump(-1)
                     else
                         fallback()
@@ -76,7 +77,7 @@ return {
                 -- ['<C-CR>'] = cmp.mapping.complete()
             }),
             sources = cmp.config.sources({
-                { name = "nvim_lsp" },                       -- LSP
+                { name = "nvim_lsp"},                       -- LSP
                 { name = "luasnip" },                        -- snippets
                 { name = "buffer" },                         -- current buffer
                 { name = "path" },                           -- file system paths
@@ -106,10 +107,12 @@ return {
         --         command = { "wn", "${label}", "-over" },
         --     },
         -- })
-
     end,
 } , {
 	"L3MON4D3/LuaSnip",             -- snippet engine
 	build = "make install_jsregexp",
 }
+
+
+
 

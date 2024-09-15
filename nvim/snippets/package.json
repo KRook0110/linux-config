@@ -4,12 +4,6 @@
         "snippets": [
             {
                 "language": [
-                    "cpp"
-                ],
-                "path": "cpp.json"
-            },
-            {
-                "language": [
                     "tex"
                 ],
                 "path": "latex.json"

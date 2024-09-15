@@ -1,19 +1,27 @@
 return {
 	"folke/trouble.nvim",
-	config = function()
-		vim.keymap.set("n", "<leader>pp", function()
-			require("trouble").toggle("document_diagnostics")
-		end, { desc = "Problems" })
-		vim.keymap.set("n", "<leader>pP", function()
-			require("trouble").toggle("workspace_diagnostics")
-		end, { desc = "Project Problems" })
-
-		vim.keymap.set("n", "]p", function()
-			require("trouble").next({ skip_groups = true, jump = true })
-		end, { desc = "Next Problem" })
-		vim.keymap.set("n", "[p", function()
-			require("trouble").previous({ skip_groups = true, jump = true })
-		end, { desc = "Prev Problem" })
-
-	end,
+	branch = "main", -- IMPORTANT!
+	keys = {
+		{
+			"<leader>pP",
+			"<cmd>Trouble diagnostics toggle focut=true<cr>",
+			desc = "Diagnostics (Trouble)",
+		},
+		{
+			"<leader>pp",
+			"<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>",
+			desc = "Buffer Diagnostics (Trouble)",
+		},
+		{
+			"<leader>ps",
+			"<cmd>Trouble symbols toggle focus=true<cr>",
+			desc = "Symbols (Trouble)",
+		},
+		-- {
+		-- 	"<leader>pl",
+		-- 	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+		-- 	desc = "LSP Definitions / references / ... (Trouble)",
+		-- },
+	},
+	opts = {}, -- for default options, refer to the configuration section for custom setup.
 }

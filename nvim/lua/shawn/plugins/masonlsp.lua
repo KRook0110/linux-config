@@ -38,7 +38,7 @@ return {
 			--     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
 			-- end
 			-- vim.lsp.inlay_hint.enable(true)
-			vim.keymap.set("n", "<leader>Mi", function()
+			vim.keymap.set("n", "<leader>Ni", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end, { desc = "Toggle Inlay Hint" })
 
@@ -64,6 +64,7 @@ return {
 			opts.desc = "Smart rename"
 			keymap.set("n", "gR", vim.lsp.buf.rename, opts) -- smart rename
 		end
+
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 

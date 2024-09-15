@@ -95,11 +95,17 @@ PATH+=/opt/cmake/bin/:
 PATH+=/home/shawn-andrew/randomprograms/vcpkg/:
 PATH+=/home/shawn-andrew/Documents/randomprograms/python/python-3.12.2/:
 PATH+=/usr/local/go/bin/:
-PATH+=$home/.local/bin/:
+PATH+=$home/.local/bin/*:
 PATH+=/opt/nvim/:
+PATH+=/usr/bin/:
+PATH+=/usr/bin/flutter/bin/:
 PATH+=/sbin/:
 PATH+=/home/shawn-andrew/Documents/randomprograms/postman/Postman/app/:
 PATH+=/home/shawn-andrew/.fzf/bin/:
+PATH+=/home/shawn-andrew/Documents/randomprograms/android-studios/android-studio/bin/:
+PATH+=/home/shawn-andrew/Documents/randomprograms/malt/malt/build/malt/bin/:
+PATH+=/home/shawn-andrew/Documents/randomprograms/intellij-idea/idea-IC-233.14475.28/bin/:
+
 
 # -- bindings
 
@@ -113,6 +119,15 @@ alias scd="cd \"\$(find * -type d | fzf)\""
 alias scp="echo \"\$(find ~/* | fzf) | xclip -sel clip\""
 alias snv="nv \"\$(find * | fzf)\""
 
+# trash
+trash () {
+    if [ -z "$1" ]
+    then
+        echo "Please enter the file that you want to trash"
+    else
+        mv $1 ~/.local/share/Trash/files/
+    fi
+}
 
 # short nvim
 alias nv="nvim"
