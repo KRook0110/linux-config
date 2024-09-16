@@ -1,6 +1,5 @@
 return {
     "hrsh7th/nvim-cmp", -- CMP
-    -- event = "VeryLazy",
     dependencies = {
         "hrsh7th/cmp-buffer",           -- text in current buffer
         "hrsh7th/cmp-path",             -- path in file systems
@@ -44,6 +43,9 @@ return {
                     luasnip.lsp_expand(args.body)
                 end,
             },
+            window = {
+
+            },
             mapping = cmp.mapping.preset.insert({
                 -- `Enter` key to confirm completion
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
@@ -83,7 +85,7 @@ return {
                 { name = "path" },                           -- file system paths
                 -- { name = "dictionary", keyword_length = 2 }, -- spelling
                 {
-                    name = 'spell',
+                    name = "spell",
                     option = {
                         keep_all_entries = false,
                         enable_in_context = function()
@@ -108,9 +110,6 @@ return {
         --     },
         -- })
     end,
-} , {
-	"L3MON4D3/LuaSnip",             -- snippet engine
-	build = "make install_jsregexp",
 }
 
 

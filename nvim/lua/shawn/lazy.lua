@@ -15,4 +15,5 @@ require("lazy").setup( {
     { import = "shawn.plugins" },
 	{ import = "shawn.plugins.colorschemes"}
 })
+
 -- require("lazy").setup( "shawn.plugins.colorschemes")
