@@ -40,11 +40,13 @@ map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = t
 local exchange_state = false;
 map("n", "cx", function()
     if exchange_state then
-        vim.cmd("normal ")
+        vim.cmd("normal! mZ\"zdiw")
     else
-
+        vim.cmd("normal! mY\"ydiw")
     end
+    exchange_state = not exchange_state
 end) -- set words that you want to exchange
+map("n", "cX", "`Z\"yP`Y\"zP")
 
 map("n", "<A-k>", ":m-2<CR>V=", opts)
 map("n", "<A-j>", ":m+1<CR>V=", opts)
