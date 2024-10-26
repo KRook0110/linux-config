@@ -51,7 +51,8 @@ return {
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
                 -- -- Ctrl+x to trigger completion menu | Ctrl + space Broken cuz i use tmux
-                ['<C-x>'] = cmp.mapping.complete(),
+                ['<C-space>'] = cmp.mapping.complete(),
+                -- ['<C-space>'] = cmp.mapping.confirm({ select = true }),
 
                 -- Navigate between snippet placeholder
                 ['<Tab>'] = cmp.mapping(function(fallback)

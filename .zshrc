@@ -91,20 +91,20 @@ alias ll="ls -Al --color=auto --group-directories-first"
 # # -- Add to path --
 typeset -U path
 
-PATH+=/opt/cmake/bin/:
-PATH+=/home/shawn-andrew/randomprograms/vcpkg/:
-PATH+=/home/shawn-andrew/Documents/randomprograms/python/python-3.12.2/:
-PATH+=/usr/local/go/bin/:
-PATH+=$home/.local/bin/*:
-PATH+=/opt/nvim/:
-PATH+=/usr/bin/:
-PATH+=/usr/bin/flutter/bin/:
-PATH+=/sbin/:
-PATH+=/home/shawn-andrew/Documents/randomprograms/postman/Postman/app/:
-PATH+=/home/shawn-andrew/.fzf/bin/:
-PATH+=/home/shawn-andrew/Documents/randomprograms/android-studios/android-studio/bin/:
-PATH+=/home/shawn-andrew/Documents/randomprograms/malt/malt/build/malt/bin/:
-PATH+=/home/shawn-andrew/Documents/randomprograms/intellij-idea/idea-IC-233.14475.28/bin/:
+# PATH+=/opt/cmake/bin/:
+# PATH+=/home/shawn-andrew/randomprograms/vcpkg/:
+# PATH+=/home/shawn-andrew/Documents/randomprograms/python/python-3.12.2/:
+# PATH+=/usr/local/go/bin/:
+# PATH+=$home/.local/bin/*:
+# PATH+=/opt/nvim/:
+# PATH+=/usr/bin/:
+# PATH+=/usr/bin/flutter/bin/:
+# PATH+=/sbin/:
+# PATH+=/home/shawn-andrew/Documents/randomprograms/postman/Postman/app/:
+# PATH+=/home/shawn-andrew/.fzf/bin/:
+# PATH+=/home/shawn-andrew/Documents/randomprograms/android-studios/android-studio/bin/:
+# PATH+=/home/shawn-andrew/Documents/randomprograms/malt/malt/build/malt/bin/:
+# PATH+=/home/shawn-andrew/Documents/randomprograms/intellij-idea/idea-IC-233.14475.28/bin/:
 
 
 # -- bindings

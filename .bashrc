@@ -6,16 +6,11 @@ alias ls="ls -a1 --color=auto --group-directories-first"
 alias ll="ls -Al --color=auto --group-directories-first"
 
 # -- Add to path --
-export PATH="/opt/cmake/bin/:$PATH"
-export PATH="~/randomprograms/vcpkg/:$PATH"
-export PATH="~/Documents/randomprograms/postman/Postman/:$PATH"
-export PATH="~/Documents/randomprograms/Python/Python-3.12.2/:$PATH"
-export PATH="/usr/local/go/bin/:$PATH"
-export PATH="$HOME/.local/bin/:$PATH"
-export PATH="/usr/bin/:$PATH"
-export PATH="/opt/nvim/:$PATH"
-export PATH="/sbin/:$PATH"
-export PATH="~/Documents/randomprograms/postman/Postman/app/:$PATH"
+# export PATH="/usr/local/go/bin/:$PATH"
+# export PATH="$HOME/.local/bin/:$PATH"
+# export PATH="/usr/bin/:$PATH"
+# export PATH="/opt/nvim/:$PATH"
+# export PATH="/sbin/:$PATH"
 
 # -- bindings
 
@@ -27,6 +22,8 @@ alias scd="cd \"\$(find * -type d | fzf)\""
 alias scp="echo \"\$(find ~/* | fzf) | xclip -sel clip\""
 alias snv="nv \"\$(find * | fzf)\""
 
+# case insensitive completion
+bind -s 'set completion-ignore-case on'
 
 # short nvim
 alias nv="nvim"
@@ -88,22 +85,18 @@ function mkcd {
   fi
 }
 
-# Script to us ls every cd
-cd ()
-{
-  command cd "$@" && ls
-}
-
-# neofetch
-
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/path.bash.inc' ]; then . '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/completion.bash.inc' ]; then . '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/completion.bash.inc'; fi
+# if [ -f '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/path.bash.inc' ]; then . '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/path.bash.inc'; fi
+#
+# # The next line enables shell command completion for gcloud.
+# if [ -f '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/completion.bash.inc' ]; then . '/home/shawn-andrew/Documents/randomprograms/google-cloud-cli/google-cloud-sdk/completion.bash.inc'; fi
 
 # Zoxide
 # eval "$(zoxide init bash)"
 
+# Starship
+eval "$(starship init bash)"
 
 clear
+
+fastfetch

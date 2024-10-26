@@ -8,6 +8,9 @@ git add ./i3/
 git add ./.zshrc
 git add ./github_commit_push.sh
 git add ./.gitignore
+git add ./polybar
+git add ./picom
+
 
 git commit -m "scripted commit"
 

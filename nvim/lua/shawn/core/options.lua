@@ -10,6 +10,9 @@ opt.signcolumn = "yes"
 opt.showtabline = 1 -- shows the tab lines -- the top part of the buffer
 opt.cursorline = true
 
+-- netrw
+vim.g.netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+
 -- tabstop
 opt.tabstop = 4 -- insert 4 spaces for tab
 opt.softtabstop = 4
@@ -78,3 +81,6 @@ opt.path:append("**")
 
 -- remove statusline
 -- opt.laststatus = 0
+
+-- Completion max height
+opt.pumheight = 15;

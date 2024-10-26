@@ -7,6 +7,10 @@ return {
     },
     config = function()
         require("harpoon").setup({
+            tabline = true,
+            menu = {
+                  width = vim.api.nvim_win_get_width(0) - 100,
+            },
             global_settings = {
                 -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
                 save_on_toggle = true,
@@ -45,8 +49,8 @@ return {
 
 
         local opts = {silent=true, noremap=true}
-        vim.keymap.set("n", "<leader>ha", function() require("harpoon.mark").add_file() end, { desc = "harpoon add file" } )
-        vim.keymap.set("n", "<leader>hr", function() require("harpoon.mark").rm_file() end, { desc = "harpoon remove file" } )
+        vim.keymap.set("n", "<leader>a", function() require("harpoon.mark").add_file() end, { desc = "harpoon add file" } )
+        vim.keymap.set("n", "<leader>r", function() require("harpoon.mark").rm_file() end, { desc = "harpoon remove file" } )
         vim.keymap.set("n", "<leader>hc", function() require('harpoon.mark').clear_all() end, {desc = "harppon clear all"} )
         vim.keymap.set("n", "<leader>hu", function() require("harpoon.ui").toggle_quick_menu() end, { desc = "harpoon ui" } )
         vim.keymap.set("n", "]h", function() require("harpoon.ui").nav_next() end, { desc = "harpoon next" } )

@@ -34,7 +34,8 @@ return {
         cf["clang-format"] = {
             -- inherit=false,
             -- command="clang-format",
-            args = {"--style={BasedOnStyle: LLVM,IndentWidth: 4}"}
+            -- args = {"--style={BasedOnStyle: LLVM,IndentWidth: 4}"}
+            args = {"--style={BasedOnStyle: Google,IndentWidth: 4}"}
         }
 
 

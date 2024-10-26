@@ -48,26 +48,26 @@ map("n", "cx", function()
 end) -- set words that you want to exchange
 map("n", "cX", "`Z\"yP`Y\"zP")
 
-map("n", "<A-k>", ":m-2<CR>V=", opts)
-map("n", "<A-j>", ":m+1<CR>V=", opts)
-map("n", "<A-l>", ">>", opts)
-map("n", "<A-h>", "<<", opts)
-map(
-	{ "n", "v" },
-	"gC",
-	[[ <CMD>s/\v(\w)(\w*)/\u\1\L\2/g<CR><CMD>noh<CR> ]],
-	{ desc = "Capitalize Every Word", noremap = true, silent = true }
-)
-map("v", "<A-l>", ">gv", opts)
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
-map("v", "<A-h>", "<gv", opts)
-map("v", ">", ">gv", opts)
-map("v", "<", "<gv", opts)
+-- map("n", "<A-k>", ":m-2<CR>V=", opts)
+-- map("n", "<A-j>", ":m+1<CR>V=", opts)
+-- map("n", "<A-l>", ">>", opts)
+-- map("n", "<A-h>", "<<", opts)
+-- map(
+-- 	{ "n", "v" },
+-- 	"gC",
+-- 	[[ <CMD>s/\v(\w)(\w*)/\u\1\L\2/g<CR><CMD>noh<CR> ]],
+-- 	{ desc = "Capitalize Every Word", noremap = true, silent = true }
+-- )
+-- map("v", "<A-l>", ">gv", opts)
+-- map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
+-- map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
+-- map("v", "<A-h>", "<gv", opts)
+-- map("v", ">", ">gv", opts)
+-- map("v", "<", "<gv", opts)
 
 -- Paste Without Copying
-map("v", "p", '"_dp')
-map("v", "P", '"_dP')
+-- map("v", "p", '"_dp')
+-- map("v", "P", '"_dP')
 
 -- window
 map("n", "<C-j>", ":wincmd j<CR>", opts)
@@ -91,32 +91,38 @@ map("n", "<leader>P", '"+p', { desc = "Paste to Clipboard" })
 map("v", "<leader>P", '"_d"+p', { desc = "Paste to Clipboard" })
 
 -- Insert shortcuts
-map("i", "<C-CR>", "<ESC>o")
+-- map("i", "<C-CR>", "<ESC>o")
 map("i", "jk", "<Esc>", opts)
 
 -- Change Modes
 
-local wrap_setting_state = false
-map("n", "<leader>Nw", function()
-	vim.opt.wrap = wrap_setting_state
-	vim.opt.linebreak = wrap_setting_state
-	print("Wrap is now ", wrap_setting_state)
-	wrap_setting_state = not wrap_setting_state
-end, { desc = "Toggle Wrap" })
+-- local wrap_setting_state = false
+-- map("n", "<leader>Nw", function()
+-- 	vim.opt.wrap = wrap_setting_state
+-- 	vim.opt.linebreak = wrap_setting_state
+-- 	print("Wrap is now ", wrap_setting_state)
+-- 	wrap_setting_state = not wrap_setting_state
+-- end, { desc = "Toggle Wrap" })
+--
+-- local check_spelling = false
+-- map("n", "<leader>Ns", function()
+-- 	vim.opt.spell = check_spelling
+-- 	print("Spell check is now ", check_spelling)
+-- 	check_spelling = not check_spelling
+-- end, { desc = "Toggle Check Spell" })
 
-local check_spelling = false
-map("n", "<leader>Ns", function()
-	vim.opt.spell = check_spelling
-	print("Spell check is now ", check_spelling)
-	check_spelling = not check_spelling
-end, { desc = "Toggle Check Spell" })
+-- local conceal_level_holder = 0
+-- map("n", "<leader>C", function()
+-- 	vim.opt.conceallevel = conceal_level_holder
+-- 	print("Conceal Level is now ", conceal_level_holder)
+-- 	conceal_level_holder = (conceal_level_holder + 1) % 3
+-- end, { desc = "Conceal Level" })
 
-local conceal_level_holder = 0
-map("n", "<leader>C", function()
-	vim.opt.conceallevel = conceal_level_holder
-	print("Conceal Level is now ", conceal_level_holder)
-	conceal_level_holder = (conceal_level_holder + 1) % 3
-end, { desc = "Conceal Level" })
+-- Explorer Netrw
+map("n", "<leader>e", ":Ex<CR>");
 
-
-
+-- brackets
+map("i", "(<CR>", "(<CR><CR>)<Esc>kcc");
+map("i", "{<CR>", "{<CR><CR>}<Esc>kcc");
+map("i", "[<CR>", "[<CR><CR>]<Esc>kcc");
+map("i", "\"<CR>", "\"<CR><CR>\"<Esc>kcc");

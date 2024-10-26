@@ -8,10 +8,10 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 
 			-- has no meaning
-            "https://github.com/echasnovski/mini.icons",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
-			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+            -- "https://github.com/echasnovski/mini.icons",
+			-- "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			-- "MunifTanjim/nui.nvim",
+			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 
 			-- "nvim-telescope/telescope-ui-select.nvim"
 		},
@@ -49,6 +49,8 @@ return {
 					wrap_results = true,
 					file_ignore_patterns = {
 						"node_modules",
+						"node_modules/",
+                        ".git/",
 					},
 					-- theme = "center",
 					-- sorting_strategy = "ascending",
@@ -65,7 +67,7 @@ return {
 			vim.keymap.set("n", "<leader>f", function()
 				builtin.find_files({ previewer = false , hidden = true})
 			end, { desc = "files" })
-			vim.keymap.set("n", "<leader>a", builtin.current_buffer_fuzzy_find, { desc = "current buffer" })
+			-- vim.keymap.set("n", "<leader>a", builtin.current_buffer_fuzzy_find, { desc = "current buffer" })
 			vim.keymap.set("n", "<leader>A", builtin.live_grep, { desc = "All" })
 			vim.keymap.set("n", "<leader>FC", builtin.colorscheme, { desc = "Colorscheme" })
 			vim.keymap.set("n", "<leader>Fc", builtin.registers, { desc = "Clipboard" })
@@ -108,73 +110,73 @@ return {
 			require("telescope").load_extension("fzf")
 		end,
 	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim",
-		},
-		event = "VeryLazy",
-		config = function()
-			-- You don't need to set any of these options.
-			-- IMPORTANT!: this is only a showcase of how you can set default options!
-			local actions = require("telescope.actions")
-			require("telescope").setup({
-				extensions = {
-					file_browser = {
-						-- theme = "ivy",
-						-- disables netrw and use telescope-file-browser in its place
-						hijack_netrw = true,
-						grouped = true,
-						-- initial_mode = "normal",
-					},
-				},
-			})
-			-- To get telescope-file-browser loaded and working with telescope,
-			-- you need to call load_extension, somewhere after setup function:
-			require("telescope").load_extension("file_browser")
-
-			vim.keymap.set("n", "<leader>E", function()
-				require("telescope").extensions.file_browser.file_browser({
-					files = false,
-					git_status = false,
-					grouped = true,
-				})
-			end, { desc = "File Browser" })
-
-			vim.keymap.set("n", "<leader>e", function()
-				require("telescope").extensions.file_browser.file_browser({
-                    hidden=true,
-					grouped = true,
-					git_status = false,
-					path = "%:p:h",
-					select_buffer = true,
-					-- initial_mode = "insert"
-				})
-			end, { desc = "Workspace File Browser" })
-		end,
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			-- This is your opts table
-			require("telescope").setup({
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({
-							-- even more opts
-						}),
-						codeactions = true,
-					},
-				},
-			})
-			-- To get ui-select loaded and working with telescope, you need to call
-			-- load_extension, somewhere after setup function:
-			require("telescope").load_extension("ui-select")
-		end,
-	},
+	-- {
+	-- 	"nvim-telescope/telescope-file-browser.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		-- You don't need to set any of these options.
+	-- 		-- IMPORTANT!: this is only a showcase of how you can set default options!
+	-- 		local actions = require("telescope.actions")
+	-- 		require("telescope").setup({
+	-- 			extensions = {
+	-- 				file_browser = {
+	-- 					-- theme = "ivy",
+	-- 					-- disables netrw and use telescope-file-browser in its place
+	-- 					hijack_netrw = true,
+	-- 					grouped = true,
+	-- 					-- initial_mode = "normal",
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 		-- To get telescope-file-browser loaded and working with telescope,
+	-- 		-- you need to call load_extension, somewhere after setup function:
+	-- 		require("telescope").load_extension("file_browser")
+	--
+	-- 		vim.keymap.set("n", "<leader>E", function()
+	-- 			require("telescope").extensions.file_browser.file_browser({
+	-- 				files = false,
+	-- 				git_status = false,
+	-- 				grouped = true,
+	-- 			})
+	-- 		end, { desc = "File Browser" })
+	--
+	-- 		vim.keymap.set("n", "<leader>e", function()
+	-- 			require("telescope").extensions.file_browser.file_browser({
+ --                    hidden=true,
+	-- 				grouped = true,
+	-- 				git_status = false,
+	-- 				path = "%:p:h",
+	-- 				select_buffer = true,
+	-- 				-- initial_mode = "insert"
+	-- 			})
+	-- 		end, { desc = "Workspace File Browser" })
+	-- 	end,
+	-- },
+	-- {
+	-- 	"nvim-telescope/telescope-ui-select.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	config = function()
+	-- 		-- This is your opts table
+	-- 		require("telescope").setup({
+	-- 			extensions = {
+	-- 				["ui-select"] = {
+	-- 					require("telescope.themes").get_dropdown({
+	-- 						-- even more opts
+	-- 					}),
+	-- 					codeactions = true,
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 		-- To get ui-select loaded and working with telescope, you need to call
+	-- 		-- load_extension, somewhere after setup function:
+	-- 		require("telescope").load_extension("ui-select")
+	-- 	end,
+	-- },
 }

@@ -93,3 +93,16 @@ vim.api.nvim_create_autocmd(
         end,
     }
 )
+
+-- netrw line number
+-- autocmd FileType netrw setlocal number
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern = {"netrw"},
+        callback = function()
+            vim.opt_local.nu = true;
+        end,
+    }
+)
+
