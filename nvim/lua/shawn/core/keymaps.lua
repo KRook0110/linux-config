@@ -28,6 +28,11 @@ map("n", "N", "Nzzzv", opts)
 map("n", "<C-d>", "M<C-d>zz", opts)
 map("n", "<C-u>", "M<C-u>zz", opts)
 map("n", "<leader>n", ":noh<CR>", opts)
+map("n", "]q", "<CMD>cn<CR>", { desc = "next quickfix list" })
+map("n", "[q", "<CMD>cp<CR>", { desc = "prev quickfix list" })
+map("n", "[b", "<CMD>bprev<CR>", { desc = "prev buffer" })
+map("n", "]b", "<CMD>bnext<CR>", { desc = "next buffer" })
+
 
 -- for wraps
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -70,10 +75,10 @@ map("n", "cX", "`Z\"yP`Y\"zP")
 -- map("v", "P", '"_dP')
 
 -- window
-map("n", "<C-j>", ":wincmd j<CR>", opts)
-map("n", "<C-k>", ":wincmd k<CR>", opts)
-map("n", "<C-l>", ":wincmd l<CR>", opts)
-map("n", "<C-h>", ":wincmd h<CR>", opts)
+map({"n", "i"}, "<C-j>", ":wincmd j<CR>", opts)
+map({"n", "i"}, "<C-k>", ":wincmd k<CR>", opts)
+map({"n", "i"}, "<C-l>", ":wincmd l<CR>", opts)
+map({"n", "i"}, "<C-h>", ":wincmd h<CR>", opts)
 
 -- window resize
 map("n", "<Up>", ":res +1<CR>", opts)
@@ -126,3 +131,6 @@ map("i", "(<CR>", "(<CR><CR>)<Esc>kcc");
 map("i", "{<CR>", "{<CR><CR>}<Esc>kcc");
 map("i", "[<CR>", "[<CR><CR>]<Esc>kcc");
 map("i", "\"<CR>", "\"<CR><CR>\"<Esc>kcc");
+
+-- get current buffer path
+map("n", "<leader>bp", ":let @+ = expand('%:p')<CR>");

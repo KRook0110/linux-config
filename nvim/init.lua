@@ -1,14 +1,13 @@
 require("shawn.core")
 require("shawn.lazy")
 
+
 -- vim.cmd.colorscheme "catppuccin-macchiato"
--- vim.cmd.colorscheme "tokyonight"
+vim.cmd.colorscheme "tokyonight-night"
 -- vim.cmd.colorscheme "everforest"
 -- vim.cmd.colorscheme "catppuccin"
-vim.cmd.colorscheme "monokai-pro-default"
+-- vim.cmd.colorscheme "monokai-pro-default"
 -- vim.cmd.colorscheme "gruvbox-material"
-
-
 
 -- Colors
 
@@ -32,3 +31,5 @@ vim.cmd.colorscheme "monokai-pro-default"
 -- vim.api.nvim_set_hl(0, 'LineNrAbove', { bold=true, italic=true }) -- cyan
 -- vim.api.nvim_set_hl(0, 'LineNr', {bold=true })
 -- vim.api.nvim_set_hl(0, 'LineNrBelow', {bold=true , italic=true}) -- pink
+
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })

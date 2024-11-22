@@ -6,7 +6,7 @@ return {
             filetype = {
                 bash = [[ source "$filename" ]],
                 -- cpp = "cd $dir && g++ $fileName -o $fileNameWithoutExt && start cmd /c \"$fileNameWithoutExt.exe && pause\"",
-                cpp = [[ cd $dir && g++ "$fileName" -o "$fileNameWithoutExt" && "./$fileNameWithoutExt" ]],
+                cpp = [[ cd $dir && g++ "$fileName" -o "$fileNameWithoutExt" -Wall -O2 && "./$fileNameWithoutExt" ]],
                 -- c = "cd $dir &&": gcc $fileName -o $fileNameWithoutExt && start cmd /c \"./$fileNameWithoutExt.exe && pause\"",
                 c = [[ cd $dir && gcc "$fileName" -o "$fileNameWithoutExt" && "./$fileNameWithoutExt"]],
                 rust = [[ cargo build && cargo run ]],

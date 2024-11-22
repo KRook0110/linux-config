@@ -1,19 +1,19 @@
 -- removes trailing spaces on save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    pattern = {"*"},
+    pattern = { "*" },
     callback = function()
-      local save_cursor = vim.fn.getpos(".")
-      pcall(function() vim.cmd [[%s/\s\+$//e]] end)
-      vim.fn.setpos(".", save_cursor)
+        local save_cursor = vim.fn.getpos(".")
+        pcall(function() vim.cmd [[%s/\s\+$//e]] end)
+        vim.fn.setpos(".", save_cursor)
     end,
 })
 
 -- disables auto indent on comment line
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function()
-    vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
-  end,
+    pattern = "*",
+    callback = function()
+        vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
+    end,
 })
 
 -- Last recent cursor line position
@@ -60,8 +60,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- Highlight on Yank
 vim.api.nvim_create_autocmd("TextYankPost",
     {
-        callback=function ()
-            vim.highlight.on_yank({ hlgroup="IncSearch", timeout=300 })
+        callback = function()
+            vim.highlight.on_yank({ hlgroup = "IncSearch", timeout = 300 })
         end
     }
 )
@@ -69,13 +69,13 @@ vim.api.nvim_create_autocmd("TextYankPost",
 
 -- When in json use spaces
 vim.api.nvim_create_autocmd(
-	{"BufRead", "BufNewFile"},
-	{
-		pattern = { "*.json" },
-		callback = function ()
-			vim.opt_local.expandtab = true
-		end
-	}
+    { "BufRead", "BufNewFile" },
+    {
+        pattern = { "*.json" },
+        callback = function()
+            vim.opt_local.expandtab = true
+        end
+    }
 )
 
 
@@ -83,13 +83,12 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
     "FileType",
     {
-        pattern ={"qf"},
+        pattern = { "qf" },
         callback = function()
-
             local buf = vim.api.nvim_get_current_buf()
-            local opt = {buffer = buf, noremap = true, silent = true}
-            vim.keymap.set("n", "j" ,"j<CR>zz<C-w>p", opt);
-            vim.keymap.set("n", "k" ,"k<CR>zz<C-w>p", opt);
+            local opt = { buffer = buf, noremap = true, silent = true }
+            vim.keymap.set("n", "j", "j<CR>zz<C-w>p", opt);
+            vim.keymap.set("n", "k", "k<CR>zz<C-w>p", opt);
         end,
     }
 )
@@ -99,10 +98,41 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
     "FileType",
     {
-        pattern = {"netrw"},
+        pattern = { "netrw" },
         callback = function()
             vim.opt_local.nu = true;
         end,
     }
 )
 
+-- Makeprg
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern = { "cpp" },
+        callback = function()
+            vim.opt_local.makeprg =
+            [[g++ %:p -o %:r -O2 -Wall -Wshadow -fsanitize=address,undefined -fno-omit-frame-pointer -g ]]
+        end,
+    }
+)
+
+vim.api.nvim_create_autocmd(
+    "FileType",
+    {
+        pattern = {
+            "javascript",
+            "typescript",
+            "javascriptreact",
+            "typescriptreact",
+        },
+        callback = function()
+            vim.cmd([[setlocal autoindent expandtab tabstop=2 shiftwidth=2]])
+            -- vim.opt_local.autoindent = true
+            -- vim.opt_local.shiftwidth = 2
+            -- vim.opt_local.tabstop = 2
+            -- vim.opt_local.softtabstop = 2
+            -- vim.opt_local.expandtab = 2
+        end,
+    }
+)

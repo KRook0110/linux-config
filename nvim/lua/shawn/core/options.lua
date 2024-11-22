@@ -17,7 +17,7 @@ vim.g.netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
 opt.tabstop = 4 -- insert 4 spaces for tab
 opt.softtabstop = 4
 opt.shiftwidth = 4
-opt.expandtab = true -- true: use spaces, false: use tabs
+opt.expandtab = true   -- true: use spaces, false: use tabs
 opt.smartindent = true -- no idea
 opt.joinspaces = false
 
@@ -42,10 +42,10 @@ opt.incsearch = true
 opt.scrolloff = 0
 opt.isfname:append("@-@")
 opt.equalalways = true -- I don't like my windows changing all the time
-opt.splitright = true -- Prefer windows splitting to the right
-opt.splitbelow = true -- Prefer windows splitting to the bottom
+opt.splitright = true  -- Prefer windows splitting to the right
+opt.splitbelow = true  -- Prefer windows splitting to the bottom
 opt.updatetime = 1000
-opt.conceallevel = 0 -- :h conceallevel
+opt.conceallevel = 0   -- :h conceallevel
 
 -- opt.colorcolumn = "80"
 
@@ -74,13 +74,24 @@ vim.g.syntax = "on"
 
 -- Random
 -- opt.clipboard = "unnamedplus" -- allows neovim to access system clipboard
-opt.cmdheight = 1 -- height of neovim command line
+opt.cmdheight = 1    -- height of neovim command line
 opt.showmode = false -- removes -- INSERT --
 opt.path:append("**")
--- opt.wildmenu = true
+opt.wildmenu = true
+
+-- wildmenu ignore
+opt.wildignore:append({
+    "*/node_modules/*",
+    ".git",
+    ".git/*",
+})
 
 -- remove statusline
 -- opt.laststatus = 0
 
 -- Completion max height
 opt.pumheight = 15;
+
+-- autosave
+vim.opt.autowrite = true;
+vim.opt.autowriteall = true;

@@ -253,10 +253,12 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # --------------------------GAPS-------------------------
 # Adds gaps
+
 gaps inner 10
 gaps outer 0
-# smart_gaps inverse_outer | yes | no
+# # smart_gaps inverse_outer | yes | no
 smart_gaps yes
+
 # ------------------------END-GAPS-------------------------
 
 # --------------------------TitleBar------------------------
@@ -292,9 +294,11 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Background
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-eberhardgross-1287145.jpg
-exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-evie-shaffer-1259279-4004375.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-evie-shaffer-1259279-4004375.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/1266440.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-triemli-28838109.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-andrew-3178786.jpg
+exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-sebastiaan9977-1480690.jpg
 
 # Emoji's
 # bindsym $mod+period exec emote

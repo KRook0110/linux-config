@@ -1,5 +1,5 @@
 return {
-    "hrsh7th/nvim-cmp", -- CMP
+    "hrsh7th/nvim-cmp",                 -- CMP
     dependencies = {
         "hrsh7th/cmp-buffer",           -- text in current buffer
         "hrsh7th/cmp-path",             -- path in file systems
@@ -32,11 +32,12 @@ return {
                         ignore_cmds = { 'Man', '!' },
                     }
                 },
-                { name = "path" }
+                {
+                    name = "path",
+                }
             }
         })
 
-        --
         cmp.setup({ -- CMP
             snippet = {
                 expand = function(args)
@@ -44,7 +45,8 @@ return {
                 end,
             },
             window = {
-
+                completion = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered(),
             },
             mapping = cmp.mapping.preset.insert({
                 -- `Enter` key to confirm completion
@@ -80,25 +82,25 @@ return {
                 -- ['<C-CR>'] = cmp.mapping.complete()
             }),
             sources = cmp.config.sources({
-                { name = "nvim_lsp"},                       -- LSP
-                { name = "luasnip" },                        -- snippets
-                { name = "buffer" },                         -- current buffer
-                { name = "path" },                           -- file system paths
+                { name = "nvim_lsp" }, -- LSP
+                { name = "luasnip" },  -- snippets
+                { name = "buffer" },   -- current buffer
+                { name = "path" },     -- file system paths
                 -- { name = "dictionary", keyword_length = 2 }, -- spelling
                 {
                     name = "spell",
                     option = {
                         keep_all_entries = false,
                         enable_in_context = function()
-                                return true
-                            end,
+                            return true
+                        end,
                         --     enable_in_context = function()
                         --         return require('cmp.config.context').in_treesitter_capture('spell')
                         -- end,
                     },
                 },
-                })
             })
+        })
 
 
         -- require("cmp_dictionary").setup({
@@ -112,7 +114,3 @@ return {
         -- })
     end,
 }
-
-
-
-

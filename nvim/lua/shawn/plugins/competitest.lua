@@ -1,6 +1,7 @@
 return {
     'xeluxee/competitest.nvim',
     dependencies = 'MunifTanjim/nui.nvim',
+    event="VeryLazy",
     config = function()
         require('competitest').setup {
             local_config_file_name = ".competitest.lua",
@@ -103,7 +104,7 @@ return {
                 java = { exec = "java", args = { "$(FNOEXT)" } },
             },
             multiple_testing = -1,
-            maximum_time = 5000,
+            maximum_time = 10000,
             output_compare_method = "squish",
             view_output_diff = false,
 
@@ -131,15 +132,15 @@ return {
             replace_received_testcases = false,
         }
 
-        vim.keymap.set("n", "<leader>Ta","<cmd>CompetiTest add_testcase<CR>")
-        vim.keymap.set("n", "<leader>Te","<cmd>CompetiTest edit_testcase<CR>")
-        vim.keymap.set("n", "<leader>Td","<cmd>CompetiTest delete_testcase<CR>")
-        vim.keymap.set("n", "<leader>Tu","<cmd>CompetiTest show_ui<CR>")
-        vim.keymap.set("n", "<leader>Tr","<cmd>CompetiTest run<CR>")
-        vim.keymap.set("n", "<leader>Tc","<cmd>CompetiTest convert auto<CR>")
-        vim.keymap.set("n", "<leader>Tic","<cmd>CompetiTest receive contest<CR>")
-        vim.keymap.set("n", "<leader>Tit","<cmd>CompetiTest receive testcases<CR>")
-        vim.keymap.set("n", "<leader>Tip","<cmd>CompetiTest receive problem<CR>")
+        vim.keymap.set("n", "<leader>ta","<cmd>CompetiTest add_testcase<CR>")
+        vim.keymap.set("n", "<leader>te","<cmd>CompetiTest edit_testcase<CR>")
+        vim.keymap.set("n", "<leader>td","<cmd>CompetiTest delete_testcase<CR>")
+        vim.keymap.set("n", "<leader>tu","<cmd>CompetiTest show_ui<CR>")
+        vim.keymap.set("n", "<leader>tr","<cmd>CompetiTest run<CR>")
+        vim.keymap.set("n", "<leader>tc","<cmd>CompetiTest convert auto<CR>")
+        vim.keymap.set("n", "<leader>tic","<cmd>CompetiTest receive contest<CR>")
+        vim.keymap.set("n", "<leader>tit","<cmd>CompetiTest receive testcases<CR>")
+        vim.keymap.set("n", "<leader>tip","<cmd>CompetiTest receive problem<CR>")
 
     end,
 

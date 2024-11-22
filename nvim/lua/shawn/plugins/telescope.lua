@@ -73,7 +73,7 @@ return {
 			vim.keymap.set("n", "<leader>Fc", builtin.registers, { desc = "Clipboard" })
 			vim.keymap.set("n", "<leader>Fh", builtin.help_tags, { desc = "Help Tags" })
 			vim.keymap.set("n", "<leader>Fo", builtin.oldfiles, { desc = "old files" })
-			vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "Buffers" })
+			vim.keymap.set("n", "<leader>Fb", builtin.buffers, { desc = "Buffers" })
 			vim.keymap.set("n", "<leader>o", builtin.treesitter, { desc = "Treesitter", silent = true, noremap = true })
 			vim.keymap.set(
 				"n",
@@ -81,8 +81,8 @@ return {
 				builtin.lsp_dynamic_workspace_symbols,
 				{ desc = "Lsp Workspace Symbols", silent = true, noremap = true }
 			)
-			vim.keymap.set("n", "]q", "<CMD>cn<CR>", { desc = "next quickfix list" })
-			vim.keymap.set("n", "[q", "<CMD>cp<CR>", { desc = "prev quickfix list" })
+            vim.keymap.set("n", "<leader>d", ":Telescope fd find_command=fd,-t=d<CR>", { desc="Directories" })
+
 			-- vim.keymap.set('n', '<leader>O', function () builtin.lsp_workspace_symbols({query = "var"}) end, {desc = "Lsp Workspace Symbols", silent=true, noremap = true})
 			-- vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "Marks", silent = true, noremap = true })
 		end,
