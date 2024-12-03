@@ -12,6 +12,7 @@ opt.cursorline = true
 
 -- netrw
 vim.g.netrw_bufsettings = 'noma nomod nu nowrap ro nobl'
+vim.g.netrw_banner = 0;
 
 -- tabstop
 opt.tabstop = 4 -- insert 4 spaces for tab

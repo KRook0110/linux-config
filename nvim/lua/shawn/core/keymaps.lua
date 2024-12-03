@@ -5,34 +5,17 @@ vim.g.maplocalleader = " "
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
 
---project
--- map("n", "<leader>pv", vim.cmd.Ex) map("n", "<leader>ps", "<cmd>SymbolsOutline<CR>", {desc = "Symbols"})
--- map("n", "<leader>pe", function() vim.cmd(":!cmd.exe /C explorer.exe /select," .. vim.fn.expand("%:p")) end, {desc = "explorer"})
--- for unix
--- map("n", "<leader>pe", function() vim.cmd(":!cmd.exe /C explorer.exe \"$dir\"" .. vim.fn.expand("%:p")) end, {desc = "explorer"})
--- map("n", "<leader>pe", function() vim.cmd(":!cmd.exe /C explorer.exe " .. vim.fn.expand("%:p")) end, {desc = "explorer"})
-
--- redirect
--- map("n", "<leader>Rc", ":edit $MYVIMRC<CR>", {desc = "config"})
--- Simple macros
--- map("n", "<leader>qa", ":wqa<CR>")
--- map("n", "<leader>qq", ":q<CR>")
--- map("n", "<leader>w", ":wa<CR>")
--- map("n", "<Esc>", ":noh<CR>", opts)
-map("n", "\\", "<Esc>", opts)
-
 -- line navigation
 map("n", "J", "mzJ'z", opts)
 map("n", "n", "nzzzv", opts)
 map("n", "N", "Nzzzv", opts)
-map("n", "<C-d>", "M<C-d>zz", opts)
-map("n", "<C-u>", "M<C-u>zz", opts)
+-- map("n", "<C-d>", "M<C-d>zz", opts)
+-- map("n", "<C-u>", "M<C-u>zz", opts)
 map("n", "<leader>n", ":noh<CR>", opts)
 map("n", "]q", "<CMD>cn<CR>", { desc = "next quickfix list" })
 map("n", "[q", "<CMD>cp<CR>", { desc = "prev quickfix list" })
 map("n", "[b", "<CMD>bprev<CR>", { desc = "prev buffer" })
 map("n", "]b", "<CMD>bnext<CR>", { desc = "next buffer" })
-
 
 -- for wraps
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -42,43 +25,23 @@ map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = t
 
 -- code manipulation
 
-local exchange_state = false;
+local exchange_state = false
 map("n", "cx", function()
-    if exchange_state then
-        vim.cmd("normal! mZ\"zdiw")
-    else
-        vim.cmd("normal! mY\"ydiw")
-    end
-    exchange_state = not exchange_state
+	if exchange_state then
+		vim.cmd('normal! mZ"zdiw')
+		vim.cmd([[normal! `Z"yP`Y"zP]])
+	else
+		vim.cmd('normal! mY"ydiw')
+	end
+	exchange_state = not exchange_state
 end) -- set words that you want to exchange
-map("n", "cX", "`Z\"yP`Y\"zP")
-
--- map("n", "<A-k>", ":m-2<CR>V=", opts)
--- map("n", "<A-j>", ":m+1<CR>V=", opts)
--- map("n", "<A-l>", ">>", opts)
--- map("n", "<A-h>", "<<", opts)
--- map(
--- 	{ "n", "v" },
--- 	"gC",
--- 	[[ <CMD>s/\v(\w)(\w*)/\u\1\L\2/g<CR><CMD>noh<CR> ]],
--- 	{ desc = "Capitalize Every Word", noremap = true, silent = true }
--- )
--- map("v", "<A-l>", ">gv", opts)
--- map("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
--- map("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
--- map("v", "<A-h>", "<gv", opts)
--- map("v", ">", ">gv", opts)
--- map("v", "<", "<gv", opts)
-
--- Paste Without Copying
--- map("v", "p", '"_dp')
--- map("v", "P", '"_dP')
+map("n", "cX",function() exchange_state = false; end)
 
 -- window
-map({"n", "i"}, "<C-j>", ":wincmd j<CR>", opts)
-map({"n", "i"}, "<C-k>", ":wincmd k<CR>", opts)
-map({"n", "i"}, "<C-l>", ":wincmd l<CR>", opts)
-map({"n", "i"}, "<C-h>", ":wincmd h<CR>", opts)
+map({ "n", "i" }, "<C-j>", ":wincmd j<CR>", opts)
+map({ "n", "i" }, "<C-k>", ":wincmd k<CR>", opts)
+map({ "n", "i" }, "<C-l>", ":wincmd l<CR>", opts)
+map({ "n", "i" }, "<C-h>", ":wincmd h<CR>", opts)
 
 -- window resize
 map("n", "<Up>", ":res +1<CR>", opts)
@@ -88,6 +51,10 @@ map("n", "<Right>", ":vertical res -1<CR>", opts)
 
 -- terminal window manager
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Normal Mode", silent = true })
+map({ "t" }, "<C-j>", "<C-\\><C-n>:wincmd j<CR>", opts)
+map({ "t" }, "<C-k>", "<C-\\><C-n>:wincmd k<CR>", opts)
+map({ "t" }, "<C-l>", "<C-\\><C-n>:wincmd l<CR>", opts)
+map({ "t" }, "<C-h>", "<C-\\><C-n>:wincmd h<CR>", opts)
 
 -- copy and paste
 map("n", "<leader>Y", '"+Y', { desc = "Copy to Clipboard" })
@@ -101,36 +68,14 @@ map("i", "jk", "<Esc>", opts)
 
 -- Change Modes
 
--- local wrap_setting_state = false
--- map("n", "<leader>Nw", function()
--- 	vim.opt.wrap = wrap_setting_state
--- 	vim.opt.linebreak = wrap_setting_state
--- 	print("Wrap is now ", wrap_setting_state)
--- 	wrap_setting_state = not wrap_setting_state
--- end, { desc = "Toggle Wrap" })
---
--- local check_spelling = false
--- map("n", "<leader>Ns", function()
--- 	vim.opt.spell = check_spelling
--- 	print("Spell check is now ", check_spelling)
--- 	check_spelling = not check_spelling
--- end, { desc = "Toggle Check Spell" })
-
--- local conceal_level_holder = 0
--- map("n", "<leader>C", function()
--- 	vim.opt.conceallevel = conceal_level_holder
--- 	print("Conceal Level is now ", conceal_level_holder)
--- 	conceal_level_holder = (conceal_level_holder + 1) % 3
--- end, { desc = "Conceal Level" })
-
 -- Explorer Netrw
-map("n", "<leader>e", ":Ex<CR>");
-
--- brackets
-map("i", "(<CR>", "(<CR><CR>)<Esc>kcc");
-map("i", "{<CR>", "{<CR><CR>}<Esc>kcc");
-map("i", "[<CR>", "[<CR><CR>]<Esc>kcc");
-map("i", "\"<CR>", "\"<CR><CR>\"<Esc>kcc");
+map("n", "<leader>e", ":Ex<CR>")
 
 -- get current buffer path
-map("n", "<leader>bp", ":let @+ = expand('%:p')<CR>");
+map("n", "<leader>bp", "<CMD>let @+ = expand('%:p')<CR>")
+map("n", "<leader>bb", "<CMD>b#<CR>", { desc = "Alternative buffer" })
+
+map("n", "<leader>bt", function()
+	local indent_size = vim.fn.input("New Tab Size : ")
+	vim.cmd("setlocal autoindent expandtab tabstop=" .. indent_size .. " shiftwidth=" .. indent_size)
+end)

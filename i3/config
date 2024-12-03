@@ -114,6 +114,9 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Tab layout toggle tabbed split
 
+# Change Display Mode
+bindsym $mod+Shift+w exec ~/.screenlayout/Bigscreenonly.sh
+bindsym $mod+Shift+q exec ~/.screenlayout/Mainscreenonly.sh
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle

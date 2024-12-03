@@ -111,28 +111,22 @@ vim.api.nvim_create_autocmd(
     {
         pattern = { "cpp" },
         callback = function()
-            vim.opt_local.makeprg =
-            [[g++ %:p -o %:r -O2 -Wall -Wshadow -fsanitize=address,undefined -fno-omit-frame-pointer -g ]]
+            vim.opt_local.makeprg = [[g++ %:p -o %:r -O2 -Wall -Wshadow -fsanitize=address,undefined -fno-omit-frame-pointer -g ]]
         end,
     }
 )
 
+
+-- if markdown
 vim.api.nvim_create_autocmd(
     "FileType",
     {
         pattern = {
-            "javascript",
-            "typescript",
-            "javascriptreact",
-            "typescriptreact",
+            "markdown"
         },
         callback = function()
-            vim.cmd([[setlocal autoindent expandtab tabstop=2 shiftwidth=2]])
-            -- vim.opt_local.autoindent = true
-            -- vim.opt_local.shiftwidth = 2
-            -- vim.opt_local.tabstop = 2
-            -- vim.opt_local.softtabstop = 2
-            -- vim.opt_local.expandtab = 2
+            vim.opt_local.spell = true;
         end,
     }
 )
+
