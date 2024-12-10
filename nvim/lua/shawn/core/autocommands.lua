@@ -111,7 +111,7 @@ vim.api.nvim_create_autocmd(
     {
         pattern = { "cpp" },
         callback = function()
-            vim.opt_local.makeprg = [[g++ %:p -o %:r -O2 -Wall -Wshadow -fsanitize=address,undefined -fno-omit-frame-pointer -g ]]
+            vim.opt_local.makeprg = [[g++ %:p -o %:r -O2 -Wall -Wextra -Wshadow -std=c++20 -O2 -g ]]
         end,
     }
 )
