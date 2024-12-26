@@ -10,6 +10,7 @@ git add ./github_commit_push.sh
 git add ./.gitignore
 git add ./polybar
 git add ./picom
+git add ./.vimrc
 
 
 git commit -m "scripted commit"
