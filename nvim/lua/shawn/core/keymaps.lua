@@ -65,6 +65,7 @@ map("v", "<leader>P", '"_d"+p', { desc = "Paste to Clipboard" })
 -- Insert shortcuts
 -- map("i", "<C-CR>", "<ESC>o")
 map("i", "jk", "<Esc>", opts)
+map("i", "{<CR>", "{<CR>}<Esc>O", opts);
 
 -- Change Modes
 

@@ -1,9 +1,8 @@
 require("shawn.core")
 require("shawn.lazy")
 
-
 -- vim.cmd.colorscheme "catppuccin-macchiato"
-vim.cmd.colorscheme "tokyonight-night"
+vim.cmd.colorscheme("tokyonight-night")
 -- vim.cmd.colorscheme "everforest"
 -- vim.cmd.colorscheme "catppuccin"
 -- vim.cmd.colorscheme "monokai-pro-default"
@@ -24,9 +23,9 @@ vim.cmd.colorscheme "tokyonight-night"
 -- White-500 : #c2c2c2
 
 vim.api.nvim_exec_autocmds("FileType", {})
-vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#A8D9F6', bold=true }) -- cyan
-vim.api.nvim_set_hl(0, 'LineNr', { fg='#c2c2c2', bold=true })
-vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#FDA8C7', bold=true }) -- pink
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#A8D9F6", bold = true }) -- cyan
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#c2c2c2", bold = true })
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#FDA8C7", bold = true }) -- pink
 
 -- vim.api.nvim_set_hl(0, 'LineNrAbove', { bold=true, italic=true }) -- cyan
 -- vim.api.nvim_set_hl(0, 'LineNr', {bold=true })
