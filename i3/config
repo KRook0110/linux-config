@@ -133,27 +133,27 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 
-set $ws1 "1:"
-set $ws2 "2:󰈹"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
-
-# set $ws1 "1"
-# set $ws2 "2"
+# set $ws1 "1:"
+# set $ws2 "2:󰈹"
 # set $ws3 "3"
 # set $ws4 "4"
 # set $ws5 "5"
 # set $ws6 "6"
 # set $ws7 "7"
-# set $ws8 "8"
-# set $ws9 "9"
-# set $ws10 "10"
+# set $ws8 "8:"
+# set $ws9 "9:"
+# set $ws10 "10:"
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -246,10 +246,10 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # -----------------------ONSTARTUP-------------------------
 
 # exec --no-startup-id i3-msg 'workspace $ws1; exec kitty -d "~/Documents/"; workspace $ws1'
-# exec --no-startup-id i3-msg 'workspace $ws2; exec google-chrome; workspace $ws1'
+# exec --no-startup-id i3-msg 'workspace $ws2; exec firefox; workspace $ws1'
 # exec --no-startup-id i3-msg 'workspace $ws8; exec discord; workspace $ws1'
-# exec --no-startup-id i3-msg 'workspace $ws9; exec kitty sh -c "tmux attach -t Notes"; workspace $ws1'
-# exec --no-startup-id i3-msg 'workspace $ws10; exec spotify; workspace $ws1'
+# exec --no-startup-id i3-msg 'workspace $ws9; exec obsidian; workspace $ws1'
+# exec --no-startup-id i3-msg 'workspace $ws10; exec spotify-launcher; workspace $ws1'
 
 # ---------------------ND-ONSTARTUP-------------------------
 
@@ -299,9 +299,12 @@ bindsym XF86AudioPrev exec playerctl previous
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-eberhardgross-1287145.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-evie-shaffer-1259279-4004375.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/1266440.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/1376638.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-triemli-28838109.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-andrew-3178786.jpg
-exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-sebastiaan9977-1480690.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-sebastiaan9977-1480690.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/fantasy-magic-landscape.jpg
+exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-eberhardgross-1287145.jpg
 
 # Emoji's
 # bindsym $mod+period exec emote
