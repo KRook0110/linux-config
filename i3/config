@@ -58,7 +58,7 @@ tiling_drag modifier titlebar
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec kitty
-bindsym $mod+b exec firefox
+bindsym $mod+b exec google-chrome-stable
 bindsym $mod+period exec --no-startup-id rofimoji --skin-tone light --action clipboard
 
 
@@ -74,6 +74,9 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+
+focus_wrapping no
 
 # change focus
 bindsym $mod+h focus left
@@ -257,7 +260,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # --------------------------GAPS-------------------------
 # Adds gaps
 
-gaps inner 10
+gaps inner 0
 gaps outer 0
 # # smart_gaps inverse_outer | yes | no
 smart_gaps yes
@@ -304,7 +307,8 @@ bindsym XF86AudioPrev exec playerctl previous
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-andrew-3178786.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-sebastiaan9977-1480690.jpg
 # exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/fantasy-magic-landscape.jpg
-exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-eberhardgross-1287145.jpg
+exec_always feh --bg-fill //home/shawn-andrew/Pictures/background/sunset-7628294_1920.jpg
+# exec_always feh --bg-fill /home/shawn-andrew/Pictures/background/pexels-eberhardgross-1287145.jpg
 
 # Emoji's
 # bindsym $mod+period exec emote

@@ -14,8 +14,10 @@ map("n", "N", "Nzzzv", opts)
 map("n", "<leader>n", ":noh<CR>", opts)
 map("n", "]q", "<CMD>cn<CR>", { desc = "next quickfix list" })
 map("n", "[q", "<CMD>cp<CR>", { desc = "prev quickfix list" })
-map("n", "[b", "<CMD>bprev<CR>", { desc = "prev buffer" })
-map("n", "]b", "<CMD>bnext<CR>", { desc = "next buffer" })
+map("n", "<M-j>", "<CMD>cn<CR>", { desc = "next quickfix list" })
+map("n", "<M-k>", "<CMD>cp<CR>", { desc = "prev quickfix list" })
+-- map("n", "[b", "<CMD>bprev<CR>", { desc = "prev buffer" })
+-- map("n", "]b", "<CMD>bnext<CR>", { desc = "next buffer" })
 
 -- for wraps
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -65,12 +67,13 @@ map("v", "<leader>P", '"_d"+p', { desc = "Paste to Clipboard" })
 -- Insert shortcuts
 -- map("i", "<C-CR>", "<ESC>o")
 map("i", "jk", "<Esc>", opts)
-map("i", "{<CR>", "{<CR>}<Esc>O", opts);
+-- map("i", "{<CR>", "{<CR>}<Esc>O", opts);
 
 -- Change Modes
 
 -- Explorer Netrw
-map("n", "<leader>e", ":Ex<CR>")
+-- if using oil comment
+-- map("n", "<leader>e", ":Ex<CR>")
 
 -- get current buffer path
 map("n", "<leader>bp", "<CMD>let @+ = expand('%:p')<CR>")

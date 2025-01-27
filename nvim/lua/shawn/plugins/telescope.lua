@@ -8,7 +8,7 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 
 			-- has no meaning
-            -- "https://github.com/echasnovski/mini.icons",
+			-- "https://github.com/echasnovski/mini.icons",
 			-- "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 			-- "MunifTanjim/nui.nvim",
 			-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
@@ -50,7 +50,7 @@ return {
 					file_ignore_patterns = {
 						"node_modules",
 						"node_modules/",
-                        ".git/",
+						".git/",
 					},
 					-- theme = "center",
 					-- sorting_strategy = "ascending",
@@ -64,27 +64,23 @@ return {
 			})
 
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>f", function()
-				builtin.find_files({ previewer = false , hidden = true})
+			vim.keymap.set("n", "<leader>fa", builtin.current_buffer_fuzzy_find, { desc = "current buffer" })
+			vim.keymap.set("n", "<leader>fC", builtin.colorscheme, { desc = "Colorscheme" })
+			vim.keymap.set("n", "<leader>fc", builtin.registers, { desc = "Clipboard" })
+			vim.keymap.set("n", "<leader>ff", function()
+				builtin.find_files({ previewer = false, hidden = true })
 			end, { desc = "files" })
-			-- vim.keymap.set("n", "<leader>a", builtin.current_buffer_fuzzy_find, { desc = "current buffer" })
-			vim.keymap.set("n", "<leader>A", builtin.live_grep, { desc = "All" })
-			vim.keymap.set("n", "<leader>FC", builtin.colorscheme, { desc = "Colorscheme" })
-			vim.keymap.set("n", "<leader>Fc", builtin.registers, { desc = "Clipboard" })
-			vim.keymap.set("n", "<leader>Fh", builtin.help_tags, { desc = "Help Tags" })
-			vim.keymap.set("n", "<leader>Fo", builtin.oldfiles, { desc = "old files" })
-			vim.keymap.set("n", "<leader>Fb", builtin.buffers, { desc = "Buffers" })
-			vim.keymap.set("n", "<leader>o", builtin.treesitter, { desc = "Treesitter", silent = true, noremap = true })
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+			vim.keymap.set("n", "<leader>fo", builtin.treesitter, { desc = "Treesitter", silent = true, noremap = true })
 			vim.keymap.set(
 				"n",
-				"<leader>O",
+				"<leader>fO",
 				builtin.lsp_dynamic_workspace_symbols,
 				{ desc = "Lsp Workspace Symbols", silent = true, noremap = true }
 			)
-            vim.keymap.set("n", "<leader>d", ":Telescope fd find_command=fd,-t=d<CR>", { desc="Directories" })
-
-			-- vim.keymap.set('n', '<leader>O', function () builtin.lsp_workspace_symbols({query = "var"}) end, {desc = "Lsp Workspace Symbols", silent=true, noremap = true})
-			-- vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "Marks", silent = true, noremap = true })
+			vim.keymap.set("n", "<leader>fd", ":Telescope fd find_command=fd,-t=d<CR>", { desc = "Directories" })
 		end,
 	},
 	{
@@ -146,7 +142,7 @@ return {
 	--
 	-- 		vim.keymap.set("n", "<leader>e", function()
 	-- 			require("telescope").extensions.file_browser.file_browser({
- --                    hidden=true,
+	--                    hidden=true,
 	-- 				grouped = true,
 	-- 				git_status = false,
 	-- 				path = "%:p:h",

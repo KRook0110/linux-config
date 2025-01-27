@@ -1,5 +1,6 @@
 # -- Setting Nvim to Default Editor --
 export EDITOR="nvim"
+export TERMINAL="kitty"
 export VISUAL="nvim"
 # -- Aliases --
 alias ls="ls -a1 --color=auto --group-directories-first"

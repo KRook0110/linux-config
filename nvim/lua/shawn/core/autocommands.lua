@@ -17,15 +17,15 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Last recent cursor line position
-vim.api.nvim_create_autocmd("BufReadPost", {
-    callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        local lcount = vim.api.nvim_buf_line_count(0)
-        if mark[1] > 0 and mark[1] <= lcount then
-            pcall(vim.api.nvim_win_set_cursor, 0, mark)
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--     callback = function()
+--         local mark = vim.api.nvim_buf_get_mark(0, '"')
+--         local lcount = vim.api.nvim_buf_line_count(0)
+--         if mark[1] > 0 and mark[1] <= lcount then
+--             pcall(vim.api.nvim_win_set_cursor, 0, mark)
+--         end
+--     end,
+-- })
 
 -- Cursorline highlighting control
 --  Only have it on in the active buffer
@@ -47,24 +47,24 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- remove terminal line numbers
 
-vim.api.nvim_create_autocmd("TermOpen", {
-
-    callback = function()
-        vim.opt_local.number = false
-        vim.opt_local.relativenumber = false
-        vim.opt_local.signcolumn = "no"
-        -- vim.cmd('startinsert')
-    end,
-})
+-- vim.api.nvim_create_autocmd("TermOpen", {
+--     callback = function()
+--         vim.opt_local.number = false
+--         vim.opt_local.relativenumber = false
+--         vim.opt_local.signcolumn = "no"
+--         -- vim.cmd('startinsert')
+--     end,
+-- })
 
 -- Highlight on Yank
-vim.api.nvim_create_autocmd("TextYankPost",
-    {
-        callback = function()
-            vim.highlight.on_yank({ hlgroup = "IncSearch", timeout = 300 })
-        end
-    }
-)
+
+-- vim.api.nvim_create_autocmd("TextYankPost",
+--     {
+--         callback = function()
+--             vim.highlight.on_yank({ hlgroup = "IncSearch", timeout = 300 })
+--         end
+--     }
+-- )
 
 
 -- When in json use spaces
@@ -79,19 +79,19 @@ vim.api.nvim_create_autocmd(
 )
 
 
--- quickfix list
-vim.api.nvim_create_autocmd(
-    "FileType",
-    {
-        pattern = { "qf" },
-        callback = function()
-            local buf = vim.api.nvim_get_current_buf()
-            local opt = { buffer = buf, noremap = true, silent = true }
-            vim.keymap.set("n", "j", "j<CR>zz<C-w>p", opt);
-            vim.keymap.set("n", "k", "k<CR>zz<C-w>p", opt);
-        end,
-    }
-)
+-- -- quickfix list
+-- vim.api.nvim_create_autocmd(
+--     "FileType",
+--     {
+--         pattern = { "qf" },
+--         callback = function()
+--             local buf = vim.api.nvim_get_current_buf()
+--             local opt = { buffer = buf, noremap = true, silent = true }
+--             vim.keymap.set("n", "j", "j<CR>zz<C-w>p", opt);
+--             vim.keymap.set("n", "k", "k<CR>zz<C-w>p", opt);
+--         end,
+--     }
+-- )
 
 -- netrw line number
 -- autocmd FileType netrw setlocal number
@@ -117,16 +117,16 @@ vim.api.nvim_create_autocmd(
 )
 
 
--- if markdown
-vim.api.nvim_create_autocmd(
-    "FileType",
-    {
-        pattern = {
-            "markdown"
-        },
-        callback = function()
-            vim.opt_local.spell = true;
-        end,
-    }
-)
+-- -- if markdown
+-- vim.api.nvim_create_autocmd(
+--     "FileType",
+--     {
+--         pattern = {
+--             "markdown"
+--         },
+--         callback = function()
+--             vim.opt_local.spell = true;
+--         end,
+--     }
+-- )
 
