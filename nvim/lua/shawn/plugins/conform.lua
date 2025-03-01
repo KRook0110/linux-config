@@ -17,7 +17,6 @@ return {
 				css = { "prettierd" },
 				html = { "prettierd" },
 				javascript = { "prettierd" },
-
 				go = { "gofmt" },
 
 			},

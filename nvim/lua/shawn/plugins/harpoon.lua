@@ -7,7 +7,6 @@ return {
     },
     config = function()
         require("harpoon").setup({
-            tabline = true,
             menu = {
                   width = vim.api.nvim_win_get_width(0) - 100,
             },
@@ -31,7 +30,7 @@ return {
                 mark_branch = false,
 
                 -- enable tabline with harpoon marks
-                tabline = true,
+                tabline = false,
                 tabline_prefix = "   ",
                 tabline_suffix = "   ",
 

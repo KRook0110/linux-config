@@ -67,27 +67,27 @@ return {
 	-- 	config = function()
 	-- 		require("nvim-treesitter.configs").setup({
 	-- 			textobjects = {
-	-- 				swap = {
-	-- 					enable = true,
+	-- 				-- swap = {
+	-- 				-- 	enable = true,
 	-- 					-- swap_next = {
 	-- 					-- 	["<leader>m"] = "@parameter.inner",
 	-- 					-- },
 	-- 					-- swap_previous = {
 	-- 					-- 	["<leader>M"] = "@parameter.inner",
 	-- 					-- },
-	-- 					swap_next = {
-	-- 						["<leader>m"] = {
-	-- 							query = { "@parameter.inner", "@function.outer", "@class.outer" },
-	-- 							desc = "Move Next",
-	-- 						},
-	-- 					},
-	-- 					swap_previous = {
-	-- 						["<leader>M"] = {
-	-- 							query = { "@parameter.inner", "@function.outer", "@class.outer" },
-	-- 							desc = "Move Next",
-	-- 						},
-	-- 					},
-	-- 				},
+	-- 					-- swap_next = {
+	-- 					-- 	["<leader>m"] = {
+	-- 					-- 		query = { "@parameter.inner", "@function.outer", "@class.outer" },
+	-- 					-- 		desc = "Move Next",
+	-- 					-- 	},
+	-- 					-- },
+	-- 					-- swap_previous = {
+	-- 					-- 	["<leader>M"] = {
+	-- 					-- 		query = { "@parameter.inner", "@function.outer", "@class.outer" },
+	-- 					-- 		desc = "Move Next",
+	-- 					-- 	},
+	-- 					-- },
+	-- 				-- },
 	-- 				select = {
 	-- 					enable = true,
 	--

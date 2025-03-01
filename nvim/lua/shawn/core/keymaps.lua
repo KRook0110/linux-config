@@ -76,10 +76,10 @@ map("i", "jk", "<Esc>", opts)
 -- map("n", "<leader>e", ":Ex<CR>")
 
 -- get current buffer path
-map("n", "<leader>bp", "<CMD>let @+ = expand('%:p')<CR>")
-map("n", "<leader>bb", "<CMD>b#<CR>", { desc = "Alternative buffer" })
-
-map("n", "<leader>bt", function()
-	local indent_size = vim.fn.input("New Tab Size : ")
-	vim.cmd("setlocal autoindent expandtab tabstop=" .. indent_size .. " shiftwidth=" .. indent_size)
-end)
+-- map("n", "<leader>bp", "<CMD>let @+ = expand('%:p')<CR>")
+-- map("n", "<leader>bb", "<CMD>b#<CR>", { desc = "Alternative buffer" })
+--
+-- map("n", "<leader>bt", function()
+-- 	local indent_size = vim.fn.input("New Tab Size : ")
+-- 	vim.cmd("setlocal autoindent expandtab tabstop=" .. indent_size .. " shiftwidth=" .. indent_size)
+-- end)

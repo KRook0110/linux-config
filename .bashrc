@@ -1,10 +1,16 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
 # -- Setting Nvim to Default Editor --
-export EDITOR="nvim"
-export TERMINAL="kitty"
-export VISUAL="nvim"
+export EDITOR=nvim
+export TERMINAL=kitty
+export TERM=kitty
+export VISUAL=nvim
 # -- Aliases --
 alias ls="ls -a1 --color=auto --group-directories-first"
 alias ll="ls -Al --color=auto --group-directories-first"
+PS1='[\u@\h \W]\$ '
 
 # -- Add to path --
 # export PATH="/usr/local/go/bin/:$PATH"

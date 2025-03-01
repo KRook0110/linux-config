@@ -5,15 +5,64 @@ return {
 		"theHamsta/nvim-dap-virtual-text",
 		"nvim-neotest/nvim-nio",
 		"leoluz/nvim-dap-go",
+		"williamboman/mason.nvim",
 	},
 	config = function()
 		require("dapui").setup()
 		require("nvim-dap-virtual-text").setup({})
-
 		require("dap-go").setup()
 
-		-- dapui listeners
 		local dap, dapui = require("dap"), require("dapui")
+
+		-- custom highlights
+		vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+
+		-- keymaps
+		vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
+		vim.keymap.set("n", "<space>gb", dap.run_to_cursor)
+
+		-- Eval var under cursor
+		vim.keymap.set("n", "<space>?", function()
+			require("dapui").eval(nil, { enter = true })
+		end)
+
+		vim.keymap.set("n", "<F1>", dap.continue)
+		vim.keymap.set("n", "<F2>", dap.step_into)
+		vim.keymap.set("n", "<F3>", dap.step_over)
+		vim.keymap.set("n", "<F4>", dap.step_out)
+		vim.keymap.set("n", "<F5>", dap.step_back)
+		vim.keymap.set("n", "<F6>", dap.restart)
+
+		-- dap terminal
+
+		-- dap server configs
+
+		-- C++
+		dap.adapters.gdb = {
+			type = "executable",
+			command = "gdb",
+			args = { "-i", "dap" },
+            terminal = "external"
+		}
+		dap.configurations.cpp = {
+			{
+				name = "Launch",
+				type = "gdb",
+				request = "launch",
+				program = function()
+					local path = vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					print("debugging : " .. path)
+					return path
+				end,
+				cwd = "${workspaceFolder}",
+				stopAtBeginningOfMainSubprogram = false,
+                console = "integratedTerminal"
+			},
+		}
+		dap.configurations.c = dap.configurations.cpp
+		dap.configurations.rust = dap.configurations.cpp
+
+		-- -- dap listeners
 		dap.listeners.before.attach.dapui_config = function()
 			dapui.open()
 		end
@@ -26,63 +75,5 @@ return {
 		dap.listeners.before.event_exited.dapui_config = function()
 			dapui.close()
 		end
-
-		-- custom highlights
-		vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
-
-		-- keymaps
-
-		vim.keymap.set("n", "<leader>du", function()
-			dapui.toggle()
-		end, { desc = "Toggle UI" })
-
-		vim.keymap.set("n", "<leader>db", function()
-			dap.toggle_breakpoint()
-		end, { desc = "Break Point" })
-
-		vim.keymap.set("n", "<leader>dc", function()
-			dap.continue()
-		end, { desc = "Continue" })
-
-		vim.keymap.set("n", "<leader>dl", function()
-			dap.run_last()
-		end, { desc = "Run Last" })
-
-		vim.keymap.set("n", "<leader>dO", function()
-			dap.step_over()
-		end, { desc = "Step Over" })
-
-		vim.keymap.set("n", "<leader>di", function()
-			dap.step_into()
-		end, { desc = "Step Into" })
-
-		vim.keymap.set("n", "<leader>do", function()
-			require("dap").step_out()
-		end, {desc = "Step Out"})
-
-		-- dap server configs
-
-        -- C++
-        dap.adapters.gdb = {
-            type = "executable",
-            command = "gdb",
-            args = { "-i", "dap" }
-        }
-        dap.configurations.cpp = {
-            {
-                name = "Launch",
-                type = "gdb",
-                request = "launch",
-                program = function()
-                    return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-                end,
-                cwd = "${workspaceFolder}",
-                stopAtBeginningOfMainSubprogram = false,
-            },
-        }
-        dap.configurations.c = dap.configurations.cpp
-        dap.configurations.rust = dap.configurations.cpp
-
-
 	end,
 }

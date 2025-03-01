@@ -4,7 +4,7 @@ set makeprg=g++\ %\ -o\ %<\ -std=c++17\ -O2
 
 let g:netrw_banner = 0
 let mapleader = " "
-inoremap {<CR> {<CR>}<ESC>O
+"inoremap {<CR> {<CR>}<ESC>O
 inoremap jk <ESC>
 nnoremap <Leader>e :Ex<CR>
 nnoremap <M-j> :cn<CR>
