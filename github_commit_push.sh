@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git add ./kitty
+git add ./kitty/**/*
 git add ./nvim
 git add ./tmux
 git add ./.bashrc
